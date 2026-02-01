@@ -12,3 +12,5 @@ function getPermutations(str) {
   return result;
 }
 console.log(getPermutations('abc'));
+
+let mainn ='cba'

@@ -60,6 +60,53 @@ for (let i = n; i >= 1; i--) {
   console.log(row);
 }
 
+
+Step-by-Step Dry Run (Corrected & Clean)
+🔹 First Step (i = 5)
+
+Inner loop condition → j <= i → j <= 5
+
+| j | Condition | Output |
+| - | --------- | ------ |
+| 1 | 1 ≤ 5     | 1      |
+| 2 | 2 ≤ 5     | 2      |
+| 3 | 3 ≤ 5     | 3      |
+| 4 | 4 ≤ 5     | 4      |
+| 5 | 5 ≤ 5     | 5      |
+| 6 | ❌ stop    |        |
+
+🔹 Second Step (i = 4)
+
+Inner loop → j <= 4
+
+| j | Condition | Output |
+| - | --------- | ------ |
+| 1 | 1 ≤ 4     | 1      |
+| 2 | 2 ≤ 4     | 2      |
+| 3 | 3 ≤ 4     | 3      |
+| 4 | 4 ≤ 4     | 4      |
+| 5 | ❌ stop    |        |
+
+
+
+🔹 Third Step (i = 3)
+1
+2
+3
+
+🔹 Fourth Step (i = 2)
+1
+2
+
+🔹 Fifth Step (i = 1)
+1
+
+✅ Final Output
+1
+
+
+
+
 📌 INTERMEDIATE PATTERNS
 4️⃣ Left Triangle
     *

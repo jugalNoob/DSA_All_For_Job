@@ -1,4 +1,4 @@
-✅ Find the First Non-Repeating Character
+v ✅ Find the First Non-Repeating Character
 function firstNonRepeatingChar(str) {
   for (let char of str) {
     if (str.indexOf(char) === str.lastIndexOf(char)) {
