@@ -1,3 +1,32 @@
+| Queue Type                 | Use Case / When to Use                                       | Project Fit / Real-World Example                                            | Time Complexity (Enqueue / Dequeue)                     |
+| -------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **Classical Queue (FIFO)** | When order of arrival matters, simple task processing        | Print jobs, API request buffers, task scheduling                            | O(1) / O(n) if using array shift; O(1) with linked list |
+| **Circular Queue**         | Fixed-size queue, memory-efficient, prevent shifting         | Embedded systems, fixed buffer network packets, producer-consumer           | O(1) / O(1)                                             |
+| **Priority Queue**         | Tasks with different priorities; process high-priority first | Job schedulers, emergency alerts, OS process scheduling                     | O(n) / O(1) with array; O(log n) / O(log n) with heap   |
+| **Monotonic Queue**        | Sliding window min/max problems, optimization in algorithms  | Real-time analytics, stock price sliding window max/min, rate limit windows | O(1) amortized per operation                            |
+| **Delay Queue**            | Schedule tasks for future execution; retry after delay       | Retry queues, task scheduling, delayed notifications                        | O(log n) with heap, O(n) with simple array + sort       |
+| **Multiple Queues**        | Separate tasks by type, priority, or processing rules        | Microservices task queues, worker pools, multi-priority job systems         | Depends on underlying queue (array, linked list, heap)  |
+
+
+
+Tips for Choosing a Queue in Projects
+
+Circular Queue: Use when memory is limited and queue size is fixed.
+
+Priority Queue: Use for tasks that must respect priority over arrival time.
+
+Monotonic Queue: Use in sliding window or algorithm-heavy real-time systems.
+
+Delay Queue: Use for retries, scheduled jobs, or rate-limited tasks.
+
+Multiple Queues: Use in distributed systems / microservices where tasks are separated by type or priority.
+
+Classical Queue: Use for simple FIFO scenarios, like logs, basic message buffering.
+
+
+
+
+
 | Type             | Key Feature                       | Example Use Case                |
 | ---------------- | --------------------------------- | ------------------------------- |
 | Simple Queue     | FIFO                              | Task queue                      |

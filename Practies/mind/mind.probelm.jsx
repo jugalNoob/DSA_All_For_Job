@@ -1,0 +1,54 @@
+
+| #  | Topic            | Problem                                   | Type / Technique          | Time Complexity | Example Input / Output                                                                |
+| -- | ---------------- | ----------------------------------------- | ------------------------- | --------------- | ------------------------------------------------------------------------------------- |
+| 1  | Array            | Maximum subarray sum (Kadane’s)           | Dynamic Programming       | O(n)            | `[−2,1,−3,4,−1,2,1,−5,4] → 6`                                                         |
+| 2  | Array            | Trapping rain water                       | Two pointers              | O(n)            | `[0,1,0,2,1,0,1,3,2,1,2,1] → 6`                                                       |
+| 3  | Array            | Product of array except self              | Prefix/Suffix             | O(n)            | `[1,2,3,4] → [24,12,8,6]`                                                             |
+| 4  | Array            | Subarray with given sum                   | Sliding Window / Hash Map | O(n)            | `[1,2,3,7,5], target=12 → [2,3,7]`                                                    |
+| 5  | Array            | Longest consecutive sequence              | Hash Set                  | O(n)            | `[100,4,200,1,3,2] → 4`                                                               |
+| 6  | Array            | Merge intervals                           | Sorting + Merge           | O(n log n)      | `[[1,3],[2,6],[8,10]] → [[1,6],[8,10]]`                                               |
+| 7  | Array            | Set matrix zeros                          | In-place marking          | O(n*m)          | `[[1,1,1],[1,0,1],[1,1,1]] → [[1,0,1],[0,0,0],[1,0,1]]`                               |
+| 8  | Array            | 3Sum                                      | Sorting + Two pointer     | O(n²)           | `[-1,0,1,2,-1,-4] → [[-1,-1,2],[-1,0,1]]`                                             |
+| 9  | Array            | 4Sum                                      | Sorting + 2-pointer       | O(n³)           | `[1,0,-1,0,-2,2], target=0 → [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]`                     |
+| 10 | Array            | Find duplicate in array 1..n              | Floyd cycle               | O(n)            | `[1,3,4,2,2] → 2`                                                                     |
+| 11 | String           | Longest palindromic substring             | DP / Expand Around Center | O(n²)           | `"babad" → "bab"`                                                                     |
+| 12 | String           | Minimum window substring                  | Sliding window            | O(n)            | `s="ADOBECODEBANC", t="ABC" → "BANC"`                                                 |
+| 13 | String           | Word break                                | DP / Trie                 | O(n²)           | `"leetcode", dict=["leet","code"] → true`                                             |
+| 14 | String           | Group anagrams                            | Hash Map                  | O(n*k log k)    | `["eat","tea","tan","ate","nat","bat"] → [["eat","tea","ate"],["tan","nat"],["bat"]]` |
+| 15 | String           | Decode string                             | Stack                     | O(n)            | `"3[a2[c]]" → "accaccacc"`                                                            |
+| 16 | Linked List      | Reverse in groups of k                    | Iterative/Recursive       | O(n)            | `[1→2→3→4→5], k=2 → [2→1→4→3→5]`                                                      |
+| 17 | Linked List      | Merge two sorted lists                    | Iterative / Recursive     | O(n)            | `[1→2→4],[1→3→4] → [1→1→2→3→4→4]`                                                     |
+| 18 | Linked List      | Remove nth node from end                  | Two pointer               | O(n)            | `[1→2→3→4→5], n=2 → [1→2→3→5]`                                                        |
+| 19 | Linked List      | Detect and remove cycle                   | Floyd + pointer           | O(n)            | `[1→2→3→2] → remove cycle`                                                            |
+| 20 | Linked List      | Add two numbers (linked list)             | Iterative                 | O(max(n,m))     | `[2→4→3]+[5→6→4] → [7→0→8]`                                                           |
+| 21 | Stack            | Largest rectangle in histogram            | Stack                     | O(n)            | `[2,1,5,6,2,3] → 10`                                                                  |
+| 22 | Stack            | Evaluate reverse polish notation          | Stack                     | O(n)            | `["2","1","+","3","*"] → 9`                                                           |
+| 23 | Stack            | Sliding window maximum                    | Deque                     | O(n)            | `[1,3,-1,-3,5,3,6,7], k=3 → [3,3,5,5,6,7]`                                            |
+| 24 | Heap             | Kth largest element                       | Min Heap                  | O(n log k)      | `[3,2,1,5,6,4], k=2 → 5`                                                              |
+| 25 | Heap             | Merge k sorted lists                      | Heap                      | O(N log k)      | `[[1,4,5],[1,3,4],[2,6]] → [1,1,2,3,4,4,5,6]`                                         |
+| 26 | Hashing          | Subarray sum equals k                     | Prefix sum                | O(n)            | `[1,1,1], k=2 → 2`                                                                    |
+| 27 | Hashing          | Count distinct elements in window         | Hash Map                  | O(n)            | `[1,2,1,3,4,2,3], k=4 → [3,4,4,3]`                                                    |
+| 28 | Recursion        | N-Queens                                  | Backtracking              | O(n!)           | `n=4 → [[.Q..,...]]`                                                                  |
+| 29 | Recursion        | Rat in a maze                             | Backtracking              | O(2^(n*m))      | Path in maze matrix                                                                   |
+| 30 | Recursion        | Sudoku solver                             | Backtracking              | O(9^(n²))       | Solve 9x9 board                                                                       |
+| 31 | Two Pointer      | Container with most water                 | Two-pointer               | O(n)            | `[1,8,6,2,5,4,8,3,7] → 49`                                                            |
+| 32 | Two Pointer      | 3Sum closest                              | Sorting + Two-pointer     | O(n²)           | `[-1,2,1,-4], target=1 → 2`                                                           |
+| 33 | Two Pointer      | Remove duplicates from sorted array II    | Two-pointer               | O(n)            | `[0,0,1,1,1,1,2,3,3] → [0,0,1,1,2,3,3]`                                               |
+| 34 | Sliding Window   | Longest substring with at most K distinct | Hash Map + window         | O(n)            | `"eceba", k=2 → 3`                                                                    |
+| 35 | Sliding Window   | Maximum sum of k consecutive elements     | Sliding window            | O(n)            | `[1,2,3,4,5], k=2 → 9`                                                                |
+| 36 | Graph            | BFS traversal                             | BFS                       | O(V+E)          | Adjacency list traversal                                                              |
+| 37 | Graph            | DFS traversal                             | DFS                       | O(V+E)          | Adjacency list traversal                                                              |
+| 38 | Graph            | Detect cycle in graph                     | DFS / Union-Find          | O(V+E)          | True/False                                                                            |
+| 39 | Graph            | Number of islands                         | DFS / BFS                 | O(n*m)          | `grid=[[1,1,0],[0,1,0],[1,0,1]] → 3`                                                  |
+| 40 | Graph            | Topological sort                          | DFS / Kahn’s              | O(V+E)          | `[0→1,0→2,1→3,2→3] → [0,2,1,3]`                                                       |
+| 41 | Graph            | Minimum spanning tree                     | Kruskal / Prim            | O(E log V)      | Weighted graph MST                                                                    |
+| 42 | DP               | Climbing stairs                           | DP                        | O(n)            | `n=3 → 3`                                                                             |
+| 43 | DP               | Coin change                               | DP                        | O(n*m)          | `coins=[1,2,5], amount=5 → 4`                                                         |
+| 44 | DP               | Longest increasing subsequence            | DP                        | O(n²)           | `[10,9,2,5,3,7,101,18] → 4`                                                           |
+| 45 | DP               | Longest common subsequence                | DP                        | O(n*m)          | `"abcde","ace" → 3`                                                                   |
+| 46 | DP               | Maximum product subarray                  | DP                        | O(n)            | `[2,3,-2,4] → 6`                                                                      |
+| 47 | DP               | Word break II                             | DP + Backtracking         | O(2^n)          | `"catsanddog", dict → ["cats and dog","cat sand dog"]`                                |
+| 48 | Bit Manipulation | Single number (all others twice)          | XOR                       | O(n)            | `[2,2,1] → 1`                                                                         |
+| 49 | Bit Manipulation | Single number II (all thrice)             | Bitwise count             | O(n)            | `[0,1,0,1,0,1,99] → 99`                                                               |
+| 50 | Matrix           | Rotate matrix 90°                         | In-place                  | O(n²)           | `[[1,2],[3,4]] → [[3,1],[4,2]]`                                                       |
+| 51 | Matrix           | Set zeroes                                | In-place                  | O(n*m)          | `[[1,0],[2,3]] → [[0,0],[2,0]]`                                                       |

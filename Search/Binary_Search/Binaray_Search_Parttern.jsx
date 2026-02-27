@@ -42,6 +42,7 @@ When found → still go right
 start = mid + 1
 
 4️⃣ Count Frequency Pattern
+
 🔍 When to use
 
 Count how many times a number appears

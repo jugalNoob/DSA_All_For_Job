@@ -107,6 +107,8 @@ Inner loop → j <= 4
 
 
 
+
+
 📌 INTERMEDIATE PATTERNS
 4️⃣ Left Triangle
     *

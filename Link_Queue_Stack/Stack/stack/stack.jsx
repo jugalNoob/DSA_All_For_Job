@@ -6,7 +6,7 @@ let max=5;
 //
 function push(newel){
     if(cureent > max){
-        console.log("mother fucker" , newel)
+        console.log("" , newel)
 }else{
     data[cureent]=newel;
     cureent+=1

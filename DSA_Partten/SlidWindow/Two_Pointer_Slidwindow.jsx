@@ -78,6 +78,8 @@ function minSubArrayLen(target, nums) {
 }
 
 📌 PATTERN 3: COUNT VALID WINDOWS
+
+
 3️⃣ Subarray Product Less Than K
 
 Concept:
@@ -99,6 +101,8 @@ function numSubarrayProductLessThanK(nums, k) {
 }
 
 📌 PATTERN 4: REPLACEMENT / FLEXIBILITY WINDOW
+
+
 4️⃣ Longest Repeating Character Replacement
 
 Concept:
@@ -125,6 +129,8 @@ function characterReplacement(s, k) {
 }
 
 📌 PATTERN 5: PERMUTATION / ANAGRAM WINDOW
+
+
 5️⃣ Check Inclusion (Permutation in String)
 
 Concept:
@@ -158,6 +164,8 @@ function checkInclusion(s1, s2) {
 }
 
 📌 PATTERN 6: DISTINCT ELEMENT WINDOW
+
+
 6️⃣ Longest Subarray with At Most K Distinct
 function longestKDistinct(nums, k) {
   let left = 0;
@@ -178,6 +186,8 @@ function longestKDistinct(nums, k) {
 }
 
 📌 PATTERN 7: TWO POINTER + GREEDY WINDOW
+
+
 7️⃣ Container With Most Water
 function maxArea(height) {
   let left = 0, right = height.length - 1;
