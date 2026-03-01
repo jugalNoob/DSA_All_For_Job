@@ -1,20 +1,19 @@
+function ToOWER(data) {
+    let result = '';
+    for (let i = 0; i < data.length; i++) {
+        let charc = data.charCodeAt(i);
 
-
-//Upper to lower case 
-function  LowerCase(data){
-     let result=''
-    for(let i=0; i<data.length; i++){
-        let charc=data.charCodeAt(i)
-        if(charc >=65  && charc <= 90){
-            result+=data[i].toLowerCase()
+        // Check if uppercase letter
+        if (charc >= 65 && charc <= 90) {
+            result += data[i].toLowerCase();
+        } else {
+            result += data[i]; // keep other characters as is
         }
     }
-    return result
+
+    return result;
 }
 
-
-let data='JUGAL'
-console.log(LowerCase(data))
-
-
+let Two = 'JUGAL';
+console.log(ToOWER(Two)); // Output: "jugal"
 
