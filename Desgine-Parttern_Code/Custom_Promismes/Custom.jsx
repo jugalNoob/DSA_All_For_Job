@@ -1,4 +1,6 @@
-Ah! Now I understand — you want to implement your own version of the built-in Promise in JavaScript from scratch, to see how it works internally. Let’s do it step by step.
+Ah! Now I understand — you want to implement your own version of the
+ built-in Promise in JavaScript from scratch, to see how it works 
+ internally. Let’s do it step by step.
 
 This is a simplified version, enough to understand the mechanics.
 

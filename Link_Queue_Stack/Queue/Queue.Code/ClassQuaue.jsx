@@ -1,56 +1,103 @@
 class Queue {
-  constructor(maxSize = Infinity) {
-    this.data = [];
-    this.maxSize = maxSize;
-  }
-
-  // Add element to the queue
-  enqueue(value) {
-    if (this.data.length >= this.maxSize) {
-      console.log("Queue is already full");
-    } else {
-      this.data.push(value);
+    constructor(capacity = 5) {
+        this.data = new Array(capacity); // initial capacity
+        this.current = 0;                // next free spot
+        this.size = 0;                   // current number of elements
+        this.capacity = capacity;
     }
-  }
 
-  // Remove element from the front of the queue
-  dequeue() {
-    if (this.data.length === 0) {
-      console.log("Queue is already empty");
-      return null;
-    } else {
-      return this.data.shift(); // Removes and returns the first element
+    // Enqueue / append
+    append(value) {
+        if (this.isFull()) {
+            this.resize();              // dynamically increase capacity
+        }
+
+        this.data[this.current] = value;
+        this.current++;
+        this.size++;
     }
-  }
 
-  // Display the queue
-  display() {
-    console.log("Queue elements:", this.data.join(" <- "));
-  }
+    // Dequeue / delete
+    deleteQueue() {
+        if (this.isEmpty()) {
+            console.log("Queue is empty");
+            return;
+        }
 
-  // Peek the front element
-  front() {
-    if (this.data.length === 0) return null;
-    return this.data[0];
-  }
+        // shift elements manually
+        for (let i = 0; i < this.size - 1; i++) {
+            this.data[i] = this.data[i + 1];
+        }
 
-  // Check if empty
-  isEmpty() {
-    return this.data.length === 0;
-  }
+        this.data[this.size - 1] = undefined;
+        this.current--;
+        this.size--;
+    }
 
-  // Check size
-  size() {
-    return this.data.length;
-  }
+    // Peek front element
+    peek() {
+        if (this.isEmpty()) {
+            console.log("Queue is empty");
+            return null;
+        }
+        return this.data[0];
+    }
+
+    // Check if queue is empty
+    isEmpty() {
+        return this.size === 0;
+    }
+
+    // Check if queue is full
+    isFull() {
+        return this.size === this.capacity;
+    }
+
+    // Dynamic resizing (double the capacity)
+    resize() {
+        let newCapacity = this.capacity * 2;
+        let newData = new Array(newCapacity);
+
+        // copy old data manually
+        for (let i = 0; i < this.size; i++) {
+            newData[i] = this.data[i];
+        }
+
+        this.data = newData;
+        this.capacity = newCapacity;
+        console.log(`Queue resized to capacity: ${this.capacity}`);
+    }
+
+    // Display queue
+    display() {
+        if (this.isEmpty()) {
+            console.log("Queue is empty");
+            return;
+        }
+
+        let result = [];
+        for (let i = 0; i < this.size; i++) {
+            result.push(this.data[i]);
+        }
+        console.log(result.join(" -> "));
+    }
 }
 
-// Example usage
-const q = new Queue(5);
-q.enqueue(10);
-q.enqueue(20);
-q.enqueue(30);
-q.display(); // Queue elements: 10 <- 20 <- 30
-q.dequeue();
-q.display(); // Queue elements: 20 <- 30
-console.log("Front element:", q.front()); // Front element: 20
+
+let q = new Queue(3);
+
+q.append(10);
+q.append(20);
+q.append(30);
+
+q.display(); // 10 -> 20 -> 30
+console.log("Peek:", q.peek()); // 10
+
+q.append(40); // triggers dynamic resize
+q.display();  // 10 -> 20 -> 30 -> 40
+
+console.log("IsEmpty:", q.isEmpty()); // false
+console.log("IsFull:", q.isFull());   // false
+
+q.deleteQueue(); // removes 10
+q.display();     // 20 -> 30 -> 40

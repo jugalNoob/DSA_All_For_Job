@@ -1,25 +1,18 @@
+function duplicated(arr) {
+    let i = 0;
 
-🔵 2️⃣ Fast / Slow Pointer (Two Pointer)
-
-⚠️ ONLY works on sorted arrays
-
-Your function (correct)
-function Duplicar(data) {
-  let i = 0;
-
-  for (let j = 1; j < data.length; j++) {
-    if (data[i] !== data[j]) {
-      i++;
-      data[i] = data[j];
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[i] !== arr[j]) {
+            arr[++i] = arr[j];
+        }
     }
-  }
 
- let result data.length=i+1;
-
- return result
-
-  
+    arr.length = i + 1; // shrink array
+    return arr;
 }
+
+
+console.log(duplicated([0 , 1 , 2 , 2 , 3 , 4 , 5]))
 
 
 let data = [0, 1, 1, 2, 2, 3, 3, 4, 5];

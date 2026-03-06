@@ -1,3 +1,14 @@
+function cacheTTL(baseTTL, minJitter = 0.1, maxJitter = 0.2, log = false) {
+  const jitterPercent = minJitter + Math.random() * (maxJitter - minJitter);
+  const jitterAmount = baseTTL * jitterPercent;
+  const finalTTL = Math.floor(baseTTL - jitterAmount + Math.random() * jitterAmount * 2);
+  
+  if (log) console.log(`cacheTTL -> base: ${baseTTL}s, final: ${finalTTL}s, jitter: ${Math.round(jitterPercent*100)}%`);
+  
+  return finalTTL;
+}
+
+
 class LINK {
 
     constructor(ttl = 3000) {
@@ -7,7 +18,10 @@ class LINK {
 
     setCache(key, value) {
 
-        const expire = Date.now() + this.ttl;
+
+       const ttlWithJitter = cacheTTL(this.ttl);
+console.log(ttlWithJitter)
+        const expire = Date.now() + ttlWithJitter;
 
         this.cache.set(key, {
             value: value,
@@ -48,21 +62,3 @@ setTimeout(() => {
     console.log(link.getCache('name_1')); // expired after 2 sec
 }, 3000);
 
-
-✅ Explanation:
-
-Each entry stores { value, expireAt }.
-
-get checks if the item is expired before returning.
-
-TTL allows automatic expiry, useful for temporary caches like session tokens.
-
-3️⃣ Optional: LRU Cache (Least Recently Used)
-
-If you want memory-limited cache, Map can help implement LRU:
-
-Use Map insertion order to track usage.
-
-When cache exceeds max size, remove the oldest entry.
-
-Example can be made if you want a real LRU cache using Map.

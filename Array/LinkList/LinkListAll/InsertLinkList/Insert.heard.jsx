@@ -1,15 +1,17 @@
-insertAt(index, value) {
-    if (index < 1 || index > this.size + 1) {
-        console.log('Invalid index');
+ InsrtNode(index , data){
+
+
+            if (index < 1 || index > this.size + 1) {
+        console.log("Invalid index");
         return;
     }
-
-    const newNode = { value, next: null };
+  
+        
+    let newnode = { value: data, next: null };
 
     if (index === 1) {
-        // Insert at head
-        newNode.next = this.head;
-        this.head = newNode;
+        newnode.next = this.head;
+        this.head = newnode;
     } else {
         let current = this.head;
         let count = 1;
@@ -17,10 +19,10 @@ insertAt(index, value) {
             current = current.next;
             count++;
         }
-        // Insert node
-        newNode.next = current.next;
-        current.next = newNode;
+        newnode.next = current.next;
+        current.next = newnode;
     }
 
     this.size++;
-}
+    }
+
