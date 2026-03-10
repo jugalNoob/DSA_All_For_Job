@@ -215,23 +215,29 @@ for (let j = 0; j < n - 1; j++) {
 This moves every element one step left.
 
 
-let array = [1, 2, 3, 4, 5];
-let steps = 3;
-let n = array.length;
 
-for (let i = 0; i < steps; i++) {
-    let first = array[0];  // store first element
-    
-    // shift elements left
-    for (let j = 0; j < n - 1; j++) {
-        array[j] = array[j + 1];
+let data = [1, 2, 3, 4, 5];
+let step = 3;
+
+function rotationArray(arr, step){
+
+    let n = arr.length;
+
+    for(let i = 0; i < step; i++){
+
+        let first = arr[0];
+
+        for(let j = 0; j < n - 1; j++){
+            arr[j] = arr[j + 1];
+        }
+
+        arr[n - 1] = first;
     }
-    
-    // put first element at end
-    array[n - 1] = first;
-    
-    console.log(`Step ${i+1}: first = ${first}, array = [${array}]`);
+
+    return arr;
 }
+
+console.log(rotationArray(data, step));
 
 
 :::::::::: --------->>> Important ::::::::::::_____??>??

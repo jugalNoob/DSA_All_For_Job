@@ -1,0 +1,1 @@
+HashMap / Set usage – frequency counters, duplicates, lookups

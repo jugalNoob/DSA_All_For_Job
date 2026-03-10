@@ -2,6 +2,18 @@
 
 
 
+// | i | data[i] | candation | count | Explanation                        |
+// | - | ------- | --------- | ----- | ---------------------------------- |
+// | 0 | 1       | null      | 0     | count=0 → candation = 1, count=1   |
+// | 1 | 2       | 1         | 1     | 2 !== 1 → else → count-- → count=0 |
+// | 2 | 3       | 1         | 0     | count=0 → candation = 3, count=1   |
+// | 3 | 3       | 3         | 1     | 3 === 3 → count++ → count=2        |
+// | 4 | 3       | 3         | 2     | 3 === 3 → count++ → count=3        |
+
+
+
+
+
 // | Index | Calculation | Result |
 // | ----- | ----------- | ------ |
 // | 0     | 3           | 3      |
@@ -37,7 +49,7 @@
 // [1,2,3,4,5] , target = 9
 
 
-// Valid subarrays:
+// Valid subdatas:
 
 // [2,3,4] = 9 → length 3
 

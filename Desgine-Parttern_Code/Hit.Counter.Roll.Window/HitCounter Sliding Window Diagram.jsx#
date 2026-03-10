@@ -1,0 +1,62 @@
+HitCounter Sliding Window Diagram
+Time axis (seconds) → [t-299] ... [t-3] [t-2] [t-1] [t]
+
+Buckets (size = 300):
++-----+-----+-----+-----+-----+ ... +-----+
+|  0  |  1  |  2  |  3  |  4  | ... | 299 |
++-----+-----+-----+-----+-----+ ... +-----+
+timestamps[idx] -> actual last timestamp stored in that bucket
+counts[idx]     -> number of hits at that timestamp
+
+Example scenario:
+t = 302s
+bucket index = t % SIZE = 302 % 300 = 2
+
+Hit arrives at t=302:
+1. Check bucket 2:
+   - If timestamps[2] != 302 → reset counts[2] = 0
+   - Set timestamps[2] = 302
+   - counts[2]++
+   
+Current sliding window: [t-299, t] = [3, 302]
+- Only sum counts from buckets where timestamps[idx] > t - SIZE
+- Ignore old buckets (timestamps[idx] <= 2)
+
+Step-by-Step Explanation with Example
+
+| Timestamp    | Bucket Index (mod 300) | Action                         | Counts Array Snapshot (simplified)                  |
+| ------------ | ---------------------- | ------------------------------ | --------------------------------------------------- |
+| 300          | 0                      | hit                            | counts[0] = 1                                       |
+| 301          | 1                      | hit                            | counts[1] = 1                                       |
+| 302          | 2                      | hit                            | counts[2] = 1                                       |
+| 303          | 3                      | hit                            | counts[3] = 1                                       |
+| getHits(303) | -                      | sum counts where timestamp > 3 | total = counts[0]+counts[1]+counts[2]+counts[3] = 4 |
+
+
+Visual Concept
+Sliding Window (last 5 minutes = 300s)
+[t-299]-------------------[t-2][t-1][t]
+| old buckets (ignored) | active buckets (sum counts) |
+
+HitCounter array → cyclic buffer
+[0][1][2][3]...[299]
+ ^  ^  ^
+ |  |  |
+ old new current
+
+
+Each bucket corresponds to 1 second of the window.
+
+The modulo ensures rolling over once timestamp exceeds 300.
+
+Only active buckets contribute to getHits().
+
+✅ Key Takeaways
+
+Fixed memory: Only 300 buckets.
+
+O(1) hit(): constant time, no iteration needed.
+
+Sliding window: accurate hit count for last 5 min.
+
+Highly interview-friendly: can extend to per-user counters, distributed systems, or longer windows.

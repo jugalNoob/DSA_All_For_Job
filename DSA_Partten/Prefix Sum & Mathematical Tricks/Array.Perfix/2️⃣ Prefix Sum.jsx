@@ -1,20 +1,84 @@
-Your code logic is correct, but the comments inside the loop are incorrect. Let’s fix and explain the actual steps.
+function prefixMax(arr){
 
-Your Code (Correct)
-function prefixSum(arr){
+    let prefix = []
+    prefix[0] = arr[0]
 
-   let prefix = [arr[0]]
+    for(let i=1;i<arr.length;i++){
+        prefix[i] =prefix[i-1]+ arr[i]
+    }
 
-   console.log(prefix)
-
-   for(let i = 1; i < arr.length; i++){
-        prefix[i] = prefix[i-1] + arr[i]
-   }
-
-   return prefix
+    return prefix
 }
 
-console.log(prefixSum([3,1,5,2,7]))
+console.log(prefixMax([3 , 1 , 5 ]))
+console.log(prefixMax([3,1,4,2,5]))
+
+| i | arr[i] | prefix[i-1] | prefix[i] calculation | prefix[i] |
+| - | ------ | ----------- | --------------------- | --------- |
+| 0 | 3      | —           | prefix[0] = arr[0]    | 3         |
+| 1 | 1      | 3           | 3 + 1                 | 4         |
+| 2 | 5      | 4           | 4 + 5                 | 9         |
+
+
+
+
+
+| i | arr[i] | prefix[i-1] | prefix[i] calculation | prefix[i] |
+| - | ------ | ----------- | --------------------- | --------- |
+| 0 | 3      | —           | prefix[0] = arr[0]    | 3         |
+| 1 | 1      | 3           | 3 + 1                 | 4         |
+| 2 | 4      | 4           | 4 + 4                 | 8         |
+| 3 | 2      | 8           | 8 + 2                 | 10        |
+| 4 | 5      | 10          | 10 + 5                | 15        |
+
+
+
+🔹 Why Prefix Sum Is Powerful
+
+It allows range queries in O(1).
+
+Example:
+
+Find sum between index L and R
+
+sum(L,R) = prefix[R] - prefix[L-1]
+
+
+Example:
+
+arr = [3,1,4,2,5]
+prefix = [3,4,8,10,15]
+
+
+Find sum index 1 → 3
+
+10 - 3 = 7
+
+
+Elements:
+
+1 + 4 + 2 = 7
+
+🔥 Real Backend Use
+
+Prefix sum is used in:
+
+analytics dashboards
+
+event counting
+
+cumulative metrics
+
+time-series queries
+
+Companies like:
+
+Google analytics
+
+Meta Platforms metrics systems
+
+use similar cumulative calculations.
+
 
 Step-by-Step Execution
 

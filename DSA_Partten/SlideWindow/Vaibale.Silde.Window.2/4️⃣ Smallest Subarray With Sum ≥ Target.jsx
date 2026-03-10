@@ -1,0 +1,29 @@
+4️⃣ Smallest Subarray With Sum ≥ Target
+
+function smallestSubarray(nums, target) {
+    let left = 0;
+    let sum = 0;
+    let minLen = Infinity;
+
+    for (let right = 0; right < nums.length; right++) {
+        sum += nums[right];
+
+        while (sum >= target) {
+            minLen = Math.min(minLen, right - left + 1);
+            sum -= nums[left];
+            left++;
+        }
+    }
+
+    return minLen === Infinity ? 0 : minLen;
+}
+
+console.log(smallestSubarray([2,3,1,2,4,3], 7)); // 2
+
+
+Idea:
+
+Expand window until sum ≥ target
+
+Shrink window to find smallest length
+

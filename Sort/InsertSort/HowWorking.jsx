@@ -1,94 +1,208 @@
-🔁 Insertion Sort – Dry Run Animation
-Example array
-[9, 2, 1, 5]
+Your code is Insertion Sort.
+Idea is similar to sorting playing cards in your hand 🃏.
 
-🔹 Rule reminder
+You take one element and insert it in the correct place in the sorted part.
 
-Left part → always sorted
+Let's go step-by-step.
 
-Pick one element (current)
+1️⃣ Initial Array
+[9, 2, 1]
 
-Shift bigger elements right
 
-Insert current in the correct spot
+Indexes:
 
-🟢 Pass 1 (i = 1)
+0   1   2
+9   2   1
 
+
+Insertion sort assumes:
+
+First element is already sorted
+
+
+So:
+
+Sorted part: [9]
+Unsorted part: [2,1]
+
+
+Loop starts from:
+
+for (let i = 1; i < data.length; i++)
+
+2️⃣ First Pass (i = 1)
+current = data[i]
 current = 2
 
-[9 | 2, 1, 5]
- ^   ^
-sorted current
-
-Compare
-
-9 > 2 → shift
-
-[9, 9, 1, 5]
-
-Insert
-[2, 9, 1, 5]
+j = i - 1
+j = 0
 
 
-✅ Left side sorted
+Array:
 
-🟢 Pass 2 (i = 2)
+[9, 2, 1]
 
+
+Check condition:
+
+while (j >= 0 && current < data[j])
+
+2 < 9  ✅
+
+
+So shift element:
+
+data[j + 1] = data[j]
+
+
+Meaning:
+
+data[1] = 9
+
+
+Array becomes:
+
+[9, 9, 1]
+
+
+Decrease j:
+
+j--
+j = -1
+
+
+Loop stops.
+
+Now insert current value:
+
+data[j + 1] = current
+
+data[0] = 2
+
+
+Array becomes:
+
+[2, 9, 1]
+
+3️⃣ Second Pass (i = 2)
+current = data[2]
 current = 1
 
-[2, 9 | 1, 5]
-      ^
-
-Compare & shift
-
-9 > 1 → shift
-
-2 > 1 → shift
-
-[2, 9, 9, 5]
-[2, 2, 9, 5]
-
-Insert
-[1, 2, 9, 5]
+j = 1
 
 
-✅ Left side sorted
+Array:
 
-🟢 Pass 3 (i = 3)
+[2, 9, 1]
 
-current = 5
 
-[1, 2, 9 | 5]
-         ^
+Check:
 
-Compare & shift
+1 < 9  ✅
 
-9 > 5 → shift
 
-[1, 2, 9, 9]
+Shift:
 
-Insert
-[1, 2, 5, 9]
+data[2] = 9
 
-🎉 Final Sorted Array
-[1, 2, 5, 9]
 
-🧠 Pointer Movement (important for interviews)
-i → selects current element
-j → moves left, comparing
-j+1 → final insert position
+Array:
 
-📌 Pseudo Animation (code view)
-for i = 1 → n
-  current = arr[i]
-  j = i - 1
+[2, 9, 9]
 
-  while j >= 0 and arr[j] > current
-    arr[j+1] = arr[j]   // shift right
-    j--
 
-  arr[j+1] = current   // insert
+Decrease j:
 
-🔥 One-line interview explanation
+j = 0
 
-“Insertion sort grows a sorted left portion by shifting larger elements right and inserting the current element in its correct position.”
+
+Check again:
+
+1 < 2  ✅
+
+
+Shift:
+
+data[1] = 2
+
+
+Array:
+
+[2, 2, 9]
+
+
+Decrease j:
+
+j = -1
+
+
+Loop stops.
+
+Insert value:
+
+data[0] = 1
+
+
+Array becomes:
+
+[1, 2, 9]
+
+4️⃣ Final Sorted Array
+[1, 2, 9]
+
+5️⃣ Visual Explanation
+
+Start:
+
+9 | 2 1
+
+
+Insert 2
+
+2 9 | 1
+
+
+Insert 1
+
+1 2 9
+
+
+Left side is always sorted part.
+
+6️⃣ Key Idea
+Take element
+Shift bigger elements right
+Insert element at correct position
+
+7️⃣ Time Complexity
+Case	Time
+Best	O(n)
+Average	O(n²)
+Worst	O(n²)
+
+Best case example:
+
+[1,2,3,4]
+
+
+No shifting needed.
+
+8️⃣ Why Insertion Sort Is Useful
+
+Used when:
+
+Small dataset
+Nearly sorted arrays
+
+
+Examples:
+
+• Database sorting small lists
+• Online sorting (new data inserted)
+
+✅ Your Insertion Sort implementation is correct.
+
+If you're preparing for DSA interviews, the next two most important sorts are:
+
+Merge Sort (O(n log n))
+Quick Sort (O(n log n))

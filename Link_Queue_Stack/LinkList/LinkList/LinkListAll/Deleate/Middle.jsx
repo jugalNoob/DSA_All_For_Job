@@ -1,3 +1,30 @@
+
+ removeMiddlle(){
+
+           if(!this.head || !this.head.next){
+        this.head = null
+        return
+    }
+
+
+        let prev=null
+        let fast=this.head
+        let slow=this.head
+        
+    while (fast && fast.next) {
+        
+        prev=slow
+        slow=slow.next
+        fast=fast.next.next
+        
+    }
+
+   if(prev){
+        prev.next = slow.next
+    }
+
+
+
 ✅ 2️⃣ Delete Middle
 
 

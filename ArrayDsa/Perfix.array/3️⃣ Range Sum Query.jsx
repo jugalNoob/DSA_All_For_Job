@@ -1,49 +1,35 @@
-3️⃣ Range Sum Query
-📌 Problem
 
-Given array, answer multiple queries:
+// 3️⃣ Difference Array (range update optimization)
+function prefixArray(data) {
+    let prefix = [];
 
-Sum from index L to R
+    prefix[0] = data[0];
 
-
-Example:
-
-arr = [3,5,2,8,6]
-
-Query:
-sum(1,3) → 5+2+8 = 15
-
-❌ Without Prefix Sum
-
-Each query = O(n)
-
-If 10,000 queries → slow
-
-✅ With Prefix Sum
-Build once → O(n)
-Each query → O(1)
-✅ Code
-class RangeSumQuery {
-    constructor(arr) {
-        this.prefix = [];
-        this.prefix[0] = arr[0];
-
-        for (let i = 1; i < arr.length; i++) {
-            this.prefix[i] = this.prefix[i - 1] + arr[i];
-        }
+    for (let i = 1; i < data.length; i++) {
+        prefix[i] = prefix[i - 1] + data[i];
     }
 
-    sumRange(left, right) {
-        if (left === 0) {
-            return this.prefix[right];
-        }
-        return this.prefix[right] - this.prefix[left - 1];
-    }
+    return prefix;
 }
 
-const obj = new RangeSumQuery([3,5,2,8,6]);
+function rangeSum(prefix, L, R) {
+    if (L === 0) return prefix[R];
+    return prefix[R] - prefix[L - 1];
+}
 
-console.log(obj.sumRange(1,3)); // 15
+let arr = [3, 1, 7, 2, 6];
+
+let prefix = prefixArray(arr);
+
+console.log(prefix);          
+console.log(rangeSum(prefix, 1, 3));
+
+
+| Query | Meaning              | Result     |
+| ----- | -------------------- | ---------- |
+| (0,2) | sum from index 0 → 2 | 3+1+7 = 11 |
+| (1,3) | sum from index 1 → 3 | 1+7+2 = 10 |
+| (2,4) | sum from index 2 → 4 | 7+2+6 = 15 |
 
 🔎 Why This Is Powerful
 

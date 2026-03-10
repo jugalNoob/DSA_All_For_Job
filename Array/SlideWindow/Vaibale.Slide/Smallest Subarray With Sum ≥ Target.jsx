@@ -31,6 +31,7 @@ function minSubArrayLen(target, nums) {
     for (let right = 0; right < nums.length; right++) {
         sum += nums[right];
 
+        // shrink window as long as sum >= target
         while (sum >= target) {
             minLength = Math.min(minLength, right - left + 1);
             sum -= nums[left];
@@ -41,7 +42,8 @@ function minSubArrayLen(target, nums) {
     return minLength === Infinity ? 0 : minLength;
 }
 
-console.log(minSubArrayLen(7, [2,3,1,2,4,3]));
+console.log(minSubArrayLen(7, [2,3,1,2,4,3])); // 2
+
 
 🧠 Why This is Variable?
 
