@@ -21,6 +21,243 @@ function MianClick(){
 }
 
 
+
+Your code is implementing a Fixed Window Rate Limiter ⏱️.
+It allows only 10 requests every 5 seconds.
+
+Let's understand how time works step-by-step.
+
+1️⃣ Variables
+let windowstart = Date.now()
+
+
+Date.now() gives the current timestamp in milliseconds.
+
+Example:
+
+1710000000000 ms
+
+
+This becomes the start of the time window.
+
+let limit = 10
+
+
+Maximum allowed requests:
+
+10 requests
+
+let expire = 5000
+
+
+Window duration:
+
+5000 ms = 5 seconds
+
+let count = 0
+
+
+Tracks number of requests in the current window.
+
+2️⃣ When Function Runs
+CountClick()
+
+
+Suppose first request happens.
+
+main = Date.now()
+
+
+Example:
+
+windowstart = 100000
+main = 100100
+
+3️⃣ Check Window Expiration
+if(main - windowstart > expire)
+
+
+This checks:
+
+current time - window start
+
+
+Example:
+
+100100 - 100000 = 100ms
+
+
+Check:
+
+100 > 5000 ?
+
+
+No ❌
+
+So window is still active.
+
+4️⃣ Count Requests
+if(count < limit)
+
+
+Example:
+
+count = 0
+limit = 10
+
+
+Condition:
+
+0 < 10
+
+
+True.
+
+Then:
+
+count++
+
+
+Now:
+
+count = 1
+
+
+Output:
+
+Request allowed 1
+
+5️⃣ When Requests Reach Limit
+
+Suppose 10 requests happen quickly.
+
+count = 10
+
+
+Next request:
+
+10 < 10
+
+
+False ❌
+
+Output:
+
+Rate limit exceeded
+
+6️⃣ After 5 Seconds
+
+Now suppose 5 seconds passed.
+
+Example:
+
+main = 106000
+windowstart = 100000
+
+
+Calculation:
+
+106000 - 100000 = 6000
+
+
+Check:
+
+6000 > 5000
+
+
+True.
+
+So window resets.
+
+count = 0
+windowstart = main
+
+
+New window begins.
+
+Now requests can start again.
+
+7️⃣ Timeline Visualization
+Time →
+0s        5s        10s
+
+Window1   Window2
+
+
+Example:
+
+Requests allowed:
+1
+2
+3
+...
+10
+
+
+Next request:
+
+Rate limit exceeded
+
+
+After 5 seconds, counter resets.
+
+8️⃣ Execution Flow
+Request arrives
+      │
+      ▼
+Check time window
+      │
+      ▼
+If expired → reset counter
+      │
+      ▼
+Check request limit
+      │
+ ┌────┴────┐
+ ▼         ▼
+Allow     Block
+
+9️⃣ Example Execution
+
+Call function quickly:
+
+CountClick()
+CountClick()
+CountClick()
+...
+
+
+Output:
+
+Request allowed 1
+Request allowed 2
+Request allowed 3
+...
+Request allowed 10
+Rate limit exceeded
+
+
+After 5 seconds:
+
+Request allowed 1
+
+🔟 Where This Is Used
+
+Fixed window rate limiting is used in API systems of companies like:
+
+Cloudflare
+
+Stripe
+
+Netflix
+
+To protect APIs from:
+
+Spam requests
+DDoS attacks
+Abuse
+
+
 ::::::::::::::::::::::::::::::::::::::::::: ------------------------->>>
 
 class FixedWindowRateLimiter {

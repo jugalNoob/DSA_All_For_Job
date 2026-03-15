@@ -1,3 +1,33 @@
+function TapWater(data){
+    let left=0
+    let right=data.length-1 
+    let leftmax=0
+    let rightmax=0
+     let water = 0
+
+    while(left <right){
+
+         
+        leftmax=Math.max(leftmax , data[left])
+        rightmax=Math.max(rightmax , data[right])
+
+        if(leftmax  < rightmax){
+            water+=leftmax-data[left]
+            left++
+        }else{
+            water+=rightmax-data[right]
+            right--
+        }
+
+    }
+   return water
+
+}
+
+ console.log(TapWater([0,1,0,2,1,0,1,3,2,1,2,1])) // 6
+
+
+
 // function trap(height) {
 //     let left = 0
 //     let right = height.length - 1

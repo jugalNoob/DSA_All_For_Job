@@ -20,6 +20,107 @@ const arr = [1,8,6,2,5,4,8,3,7];
 console.log(Moste(arr)); // 49
 
 
+Your function solves the “Container With Most Water” problem using the Two 
+Pointer technique.
+Let's see how it works step-by-step with a table. 👇
+
+Array:
+
+index:  0 1 2 3 4 5 6 7 8
+value: [1,8,6,2,5,4,8,3,7]
+
+
+Initial pointers
+
+start = 0
+end   = 8
+
+Step-by-Step Table
+
+
+
+
+| Step | start | end   | height min | width | area | max | Move    |
+| ---- | ----- | ----- | ---------- | ----- | ---- | --- | ------- |
+| 1    | 0 (1) | 8 (7) | 1          | 8     | 8    | 8   | start++ |
+| 2    | 1 (8) | 8 (7) | 7          | 7     | 49   | 49  | end--   |
+| 3    | 1 (8) | 7 (3) | 3          | 6     | 18   | 49  | end--   |
+| 4    | 1 (8) | 6 (8) | 8          | 5     | 40   | 49  | end--   |
+| 5    | 1 (8) | 5 (4) | 4          | 4     | 16   | 49  | end--   |
+| 6    | 1 (8) | 4 (5) | 5          | 3     | 15   | 49  | end--   |
+| 7    | 1 (8) | 3 (2) | 2          | 2     | 4    | 49  | end--   |
+| 8    | 1 (8) | 2 (6) | 6          | 1     | 6    | 49  | end--   |
+
+
+Loop stops when
+
+start >= end
+
+
+Final answer
+
+max = 49
+
+Why Pointer Moves?
+
+Rule:
+
+Move the pointer with smaller height
+
+
+Example first step
+
+1   8
+|   |
+
+
+Left wall smaller → move start++
+
+Because smaller height limits water.
+
+Visual Explanation
+
+Best container is:
+
+index 1 (height 8)
+index 8 (height 7)
+
+
+Width
+
+8 - 1 = 7
+
+
+Height
+
+min(8,7) = 7
+
+
+Area
+
+7 × 7 = 49
+
+Time Complexity
+O(n)
+
+
+Only one pass.
+
+Space Complexity
+O(1)
+
+
+No extra memory.
+
+Interview Explanation (Very Important)
+
+You can say:
+
+“I use the two pointer approach.
+Start pointer at left and end pointer at right.
+Calculate container area using min(height) × width.
+Move the pointer with smaller height because it limits water capacity.”
+
 
 
 🔥 Key Formula

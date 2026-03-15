@@ -2,6 +2,8 @@
 
 
 
+
+
 // | i | data[i] | candation | count | Explanation                        |
 // | - | ------- | --------- | ----- | ---------------------------------- |
 // | 0 | 1       | null      | 0     | count=0 → candation = 1, count=1   |

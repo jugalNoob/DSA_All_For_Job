@@ -1,29 +1,25 @@
-1️⃣ Longest Substring Without Repeating Characters
-
-function nonretap(data){
+function notreplate(data){
 
     let left = 0
-    let set = new Set()
-    let maxlength = 0
+    let map = new Map()
+    let max = 0
 
     for(let i = 0; i < data.length; i++){
 
-        while(set.has(data[i])){
-            set.delete(data[left])
-            left++
+        if(map.has(data[i])){
+            left = Math.max(left, map.get(data[i]) + 1)
         }
 
-        set.add(data[i])
+        map.set(data[i], i)
 
-        maxlength = Math.max(maxlength, i - left + 1)
+        max = Math.max(max, i - left + 1)
     }
 
-    return maxlength
+    return max
 }
 
-console.log(nonretap("abcabcbb")) // 3
-
-
+console.log(notreplate("abcabcbb")) // 3
+console.log(notreplate("bbbbb")) // 1
 
 Idea:
 

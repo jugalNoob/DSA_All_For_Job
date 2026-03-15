@@ -1,55 +1,41 @@
-Absolutely! Let's create a simple LRU (Least Recently Used) cache in JavaScript from scratch. I'll break it down step by step and provide a clean implementation.
+class LRUCache{
 
-🔹 Concept Recap
-
-LRU Cache evicts the least recently used item when the cache exceeds its capacity.
-
-Common operations:
-
-get(key) → returns value if present, else -1.
-
-put(key, value) → adds or updates value. If full, removes the least recently used.
-
-Data structures used:
-
-Map in JS (maintains insertion order)
-
-Optional: Doubly linked list for O(1) operations (advanced).
-
-🔹 Simple JS Implementation using Map
-class LRUCache {
-    constructor(capacity) {
-        this.capacity = capacity;
-        this.cache = new Map(); // stores key-value pairs
-    }
-
-    get(key) {
-        if (!this.cache.has(key)) return -1;
-
-        // Move the accessed key to the end (most recently used)
-        const value = this.cache.get(key);
-        this.cache.delete(key);
-        this.cache.set(key, value);
-
-        return value;
-    }
-
-    put(key, value) {
-        // If key exists, remove it first
-        if (this.cache.has(key)) {
-            this.cache.delete(key);
-        }
-
-        // Insert the key as most recently used
-        this.cache.set(key, value);
-
-        // If over capacity, remove the least recently used (first inserted)
-        if (this.cache.size > this.capacity) {
-            const firstKey = this.cache.keys().next().value;
-            this.cache.delete(firstKey);
-        }
-    }
+constructor(capacity){
+this.capacity = capacity
+this.map = new Map()
 }
+
+get(key){
+
+if(!this.map.has(key)) return -1
+
+const value = this.map.get(key)
+
+this.map.delete(key)
+this.map.set(key,value)
+
+return value
+}
+
+put(key,value){
+
+if(this.map.has(key)){
+this.map.delete(key)
+}
+else if(this.map.size === this.capacity){
+
+let firstKey = this.map.keys().next().value
+
+this.map.delete(firstKey)
+
+}
+
+this.map.set(key,value)
+
+}
+
+}
+
 
 // ✅ Example usage
 const lru = new LRUCache(3);
