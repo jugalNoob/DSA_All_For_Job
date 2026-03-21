@@ -1,0 +1,161 @@
+🔹 2. Singleton (DB / Redis Connection)
+
+
+🔹 2. Singleton (DB / Redis Connection)
+// utils/DB.js
+class DB {
+    constructor() {
+        if (DB.instance) return DB.instance;
+        this.orders = []; // simple in-memory DB
+        DB.instance = this;
+    }
+
+    saveOrder(order) {
+        this.orders.push(order);
+    }
+
+    getOrders() {
+        return this.orders;
+    }
+}
+
+module.exports = new DB();
+
+🔹 3. Adapter Pattern (Third-party APIs)
+// services/StripeAdapter.js
+class StripeAdapter {
+    pay(amount) {
+        console.log(`Stripe Payment processed: $${amount}`);
+    }
+}
+
+module.exports = StripeAdapter;
+
+// services/PaypalAdapter.js
+class PaypalAdapter {
+    makePayment(amount) {
+        console.log(`PayPal Payment processed: $${amount}`);
+    }
+}
+
+// Adapter to unify interface
+class PaypalAdapterWrapper {
+    constructor(paypal) {
+        this.paypal = paypal;
+    }
+
+    pay(amount) {
+        this.paypal.makePayment(amount);
+    }
+}
+
+module.exports = PaypalAdapterWrapper;
+
+🔹 4. Strategy Pattern (Payment Method Selection)
+// services/PaymentStrategy.js
+class PaymentStrategy {
+    constructor(paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    pay(amount) {
+        this.paymentMethod.pay(amount);
+    }
+}
+
+module.exports = PaymentStrategy;
+
+🔹 5. Factory Pattern (Create Payment Service Dynamically)
+// services/PaymentFactory.js
+const StripeAdapter = require("./StripeAdapter");
+const PaypalAdapterWrapper = require("./PaypalAdapter");
+
+class PaymentFactory {
+    static create(type) {
+        if (type === "stripe") return new StripeAdapter();
+        if (type === "paypal") return new PaypalAdapterWrapper(new (require("./PaypalAdapter"))());
+        throw new Error("Unknown payment type");
+    }
+}
+
+module.exports = PaymentFactory;
+
+🔹 6. State Pattern (Order Lifecycle)
+// models/Order.js
+class Order {
+    constructor(id, amount) {
+        this.id = id;
+        this.amount = amount;
+        this.state = "Pending"; // Pending → Paid → Completed
+    }
+
+    setState(state) {
+        this.state = state;
+        console.log(`Order ${this.id} state: ${this.state}`);
+    }
+}
+
+module.exports = Order;
+
+🔹 7. App Logic (app.js)
+const DB = require("./utils/DB");
+const PaymentFactory = require("./services/PaymentFactory");
+const PaymentStrategy = require("./services/PaymentStrategy");
+const Order = require("./models/Order");
+
+// Create orders
+const order1 = new Order(1, 100);
+const order2 = new Order(2, 200);
+
+DB.saveOrder(order1);
+DB.saveOrder(order2);
+
+// Payment using Strategy + Factory + Adapter
+function processPayment(order, type) {
+    const paymentService = PaymentFactory.create(type);  // Factory
+    const paymentStrategy = new PaymentStrategy(paymentService); // Strategy
+
+    paymentStrategy.pay(order.amount);  // pay
+    order.setState("Paid");             // State
+}
+
+// Process payments
+processPayment(order1, "stripe");
+processPayment(order2, "paypal");
+
+// List all orders
+console.log("All Orders:", DB.getOrders());
+
+🔹 8. Output (What Happens)
+Stripe Payment processed: $100
+Order 1 state: Paid
+PayPal Payment processed: $200
+Order 2 state: Paid
+All Orders: [Order {id:1, amount:100, state:"Paid"}, Order {id:2, amount:200, state:"Paid"}]
+
+
+✅ Singleton ensures the same DB instance is used
+✅ Factory creates payment method dynamically
+✅ Strategy handles execution dynamically
+✅ Adapter makes PayPal conform to unified interface
+✅ State tracks order lifecycle
+
+🔹 9. Interview Talking Points
+
+“I used Singleton for DB so every service shares same instance.”
+
+“I used Factory to dynamically create payment services.”
+
+“I used Strategy so the payment execution can switch easily.”
+
+“I used Adapter to unify third-party PayPal API interface.”
+
+“I used State to track the order lifecycle.”
+
+🔹 10. Next Steps (Optional Advanced)
+
+Add TTL / caching for payment status → Redis
+
+Add Throttle/Debounce on payment API → prevent spam
+
+Add Distributed Cache → multiple Node.js instances

@@ -1,21 +1,14 @@
-function wrap(fn){
+class Stripe{
+    pay(amount){
+        console.log('stripe amount' , amount)
+    }
+}
 
-    console.log('before')
-
-    return function (...args){
-
-        let result=fn(...args)
-console.log('after')
-        return result
+class Stripe{
+    pay(amount){
+        console.log('stripe amount' , amount)
     }
 }
 
 
-function Main(){
 
-    console.log('test function')
-}
-
-let test=wrap(Main)
-
-test()

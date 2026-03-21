@@ -1,4 +1,4 @@
-Exponential Backoff
+ Exponential Backoff
 
 
 : Ah, good question — let’s break it down in easy terms:

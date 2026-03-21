@@ -1,45 +1,30 @@
+let data = [10, 20, 30, 40, 40, 40, 50, 60, 70];
+let target = 40;
 
-3️⃣ Last Occurrence
+let start = 0;
+let end = data.length - 1;
+let firstOccurrence = -1;
 
-Find the last index of target.
+while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
 
-Example
-
-[1,2,2,2,3,4]
-target = 2
-
-
-Answer
-
-index = 3
-
-
-Code
-
-function lastOccurrence(arr,target){
-
-let left=0
-let right=arr.length-1
-let result=-1
-
-while(left<=right){
-
-let mid=Math.floor((left+right)/2)
-
-if(arr[mid]===target){
-result=mid
-left=mid+1
-}
-else if(arr[mid] < target){
-left=mid+1
-}
-else{
-right=mid-1
+    if (data[mid] === target) {
+        firstOccurrence = mid;   // store index
+        end = mid - 1;           // continue searching on left
+    } else if (data[mid] < target) {
+        start = mid + 1;
+    } else {
+        end = mid - 1;
+    }
 }
 
-}
+console.log("First Occurrence Index:", firstOccurrence);
 
-return result
-}
 
-console.log(lastOccurrence([1,2,2,2,3,4],2))
+| Iteration | start       | end | mid | data[mid] | Action               | firstOccurrence |
+| --------- | ----------- | --- | --- | --------- | -------------------- | --------------- |
+| 1         | 0           | 8   | 4   | 40        | Found → move left    | 4               |
+| 2         | 0           | 3   | 1   | 20        | 20 < 40 → move right | 4               |
+| 3         | 2           | 3   | 2   | 30        | 30 < 40 → move right | 4               |
+| 4         | 3           | 3   | 3   | 40        | Found → move left    | 3               |
+| End       | start > end |     |     |           | Stop                 | 3               |

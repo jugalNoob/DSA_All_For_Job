@@ -1,6 +1,8 @@
 Exactly! 🔥 What you have here is a simulation of a Redis TTL cache with jitter, which is exactly the kind of strategy used in distributed caching systems to prevent cache stampedes. Let me break it down carefully.
 
 🧩 Code Explanation
+
+
 function cacheTTL(baseTTL, minJitter = 0.1, maxJitter = 0.2, log = false) {
   const jitterPercent = minJitter + Math.random() * (maxJitter - minJitter);
   const jitterAmount = baseTTL * jitterPercent;

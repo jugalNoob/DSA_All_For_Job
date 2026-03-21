@@ -141,8 +141,10 @@ remoceDecpluation(){
             current=current.next
         }
 
-        return 
+   
     }
+
+        return this.head;
 
 }
 

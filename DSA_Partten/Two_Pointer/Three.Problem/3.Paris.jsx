@@ -65,30 +65,73 @@ Fix the first element nums[i].
 
 Use two pointers (left and right) on the remaining array to find the other two numbers.
 
-If sum < target → move left
 
-If sum > target → move right
 
-If sum == target → triplet found
+function threeSum(data, target) {
+    data.sort((a, b) => a - b);
+console.log(data)
+    for (let i = 0; i < data.length - 2; i++) {
 
-Time Complexity:
+        let start = i + 1;
 
-Sorting: O(n log n)
+        let end = data.length - 1;
 
-Outer loop + inner two-pointer: O(n²)
+        while (start < end) {
+            let sum = data[i] + data[start] + data[end];
 
-Use Cases:
+            if (sum === target) {
+                return [data[i], data[start], data[end]];
+            } else if (sum < target) {
+                start++;   // ✅ increase sum
+            } else {
+                end--;     // ✅ decrease sum
+            }
+        }
+    }
 
-3Sum problem
+    return null;
+}
 
-Triplet with closest sum
+console.log(threeSum([-1,0,1,2,-1,-4], 2));
 
-3-product problems (like max product triplet)
 
-✅ Key Insight:
 
-Two pointers always scan linearly, fixing elements outside of them reduces complexity.
 
-This is the same logic you can extend to 4-pointers: fix two elements → use two pointers for remaining two.
+2. Walkthrough with your example
+Input:
+data = [-1, 0, 1, 2, -1, -4]
+target = 2
+Step 1: Sorting
+JavaScriptdata.sort((a, b) => a - b);
+Sorted array becomes:
+[-4, -1, -1, 0, 1, 2]
+(Indices: 0:-4, 1:-1, 2:-1, 3:0, 4:1, 5:2)
+Now the outer loop runs: for (let i = 0; i < data.length-2; i++) → i goes from 0 to 3.
 
-If you want, I can write the 4-pointer / 4-su
+Step 2: i = 0 (fixed number = -4)
+JavaScriptstart = 1, end = 5
+
+sum = -4 + (-1) + 2 = -3 < 2 → start++ → start=2
+sum = -4 + (-1) + 2 = -3 < 2 → start++ → start=3
+sum = -4 + 0 + 2 = -2 < 2 → start++ → start=4
+sum = -4 + 1 + 2 = -1 < 2 → start++ → start=5
+
+start == end, inner while loop ends.
+No triplet found for i=0.
+
+Step 3: i = 1 (fixed number = -1)
+JavaScriptstart = 2, end = 5
+
+sum = -1 + (-1) + 2 = 0 < 2 → start++ → start=3
+sum = -1 + 0 + 2 = 1 < 2 → start++ → start=4
+sum = -1 + 1 + 2 = 2 == target ✓
+
+Found!
+Return [data[1], data[4], data[5]] → [-1, 1, 2]
+The function stops here and never checks i=2 or i=3.
+
+3. What the console.log prints
+JavaScriptconsole.log(threeSum([-1,0,1,2,-1,-4], 2));
+Output:
+[-1, 1, 2]
+4. Why this works perfectly

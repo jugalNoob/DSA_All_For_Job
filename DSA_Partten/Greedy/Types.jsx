@@ -1,3 +1,16 @@
+✅ Since you are learning DSA logic building, the next very important greedy interview problems are:
+
+Activity Selection Problem
+Fractional Knapsack
+Jump Game
+Gas Station Problem
+Candy Distribution
+
+
+These 5 greedy problems appear very often in coding interviews.
+
+
+
 🔥 How to Recognize Greedy Problems
 
 Greedy problems usually ask:

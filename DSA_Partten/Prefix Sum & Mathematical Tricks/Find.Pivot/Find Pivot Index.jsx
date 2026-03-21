@@ -1,4 +1,42 @@
-Got it! The “Find Pivot Index” problem is a neat prefix-sum / cumulative sum problem. Let’s go step by step.
+
+function pivotIndex(nums) {
+    let total = nums.reduce((a, b) => a + b, 0);
+    let left = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (left * 2 === total - nums[i]) {
+            return i;
+        }
+        left += nums[i];
+    }
+
+    return -1;
+}
+
+
+function pountfix(data){
+    let total=data.reduce((sum,e)=>sum+e,0)
+    let left=0
+
+    for(let i=0; i<data.length; i++){
+
+        if(left === total -data[i]-left){
+
+            return i
+        }
+
+        left+=data[i]
+    }
+
+    return -1
+}
+
+console.log(pountfix([1,7,3,6,5,6]))
+
+
+
+Got it! The “Find Pivot Index” problem is a neat prefix-sum / 
+cumulative sum problem. Let’s go step by step.
 
 1️⃣ Problem Statement
 

@@ -1,0 +1,90 @@
+Bridge Pattern – Core Structure (most common visualization)
+textClient
+                   │
+                   ▼
+         ┌───────────────────────┐
+         │     Abstraction       │  ← high-level control
+         │───────────────────────│
+         │ + operation()         │
+         │ - impl: Implementor   │◄── reference / bridge
+         └───────────┬───────────┘
+                     │
+          ┌──────────┼──────────┐
+          │          │          │
+   ┌────────────┐ ┌────────────┐ ┌────────────┐
+   │ Refined    │ │ Refined    │ │ Abstraction│
+   │ Abstraction│ │ Abstraction│ │ (variants) │
+   └─────┬──────┘ └─────┬──────┘ └─────┬──────┘
+         │              │              │
+         ▼              ▼              ▼
+   ┌───────────────┐ ┌───────────────┐
+   │  Implementor  │ │  Implementor  │  ← interface for low-level work
+   │───────────────│ │───────────────│
+   │ + operationImpl()│ + operationImpl()│
+   └───────┬───────┘ └───────┬───────┘
+           │                 │
+   ┌───────┼───────┐   ┌─────┼─────┐
+   │               │   │           │
+┌────────────┐ ┌────────────┐ ┌────────────┐
+│ Concrete   │ │ Concrete   │ │ Concrete   │
+│ Impl A     │ │ Impl B     │ │ Impl C     │
+│ (e.g. Win) │ │ (e.g. Mac) │ │ (e.g. Linux)│
+└────────────┘ └────────────┘ └────────────┘
+Bridge Pattern – Classic Shape + Color Example (very popular in explanations)
+textClient
+  │
+  ▼
+┌─────────────────────┐
+│     Shape           │  ← Abstraction
+│─────────────────────│
+│ - drawAPI           │◄── bridge to implementation
+│ + draw()            │
+└──────────┬──────────┘
+           │
+    ┌──────┼──────┐
+    │             │
+┌────────────┐ ┌────────────┐
+│   Circle   │ │  Rectangle │  ← Refined Abstractions
+│ + draw()   │ │ + draw()   │
+└─────┬──────┘ └─────┬──────┘
+      │              │
+      ▼              ▼
+┌─────────────────────────────┐
+│         DrawAPI             │  ← Implementor (bridge interface)
+│─────────────────────────────│
+│ + drawCircle(...)           │
+│ + drawRectangle(...)        │
+└───────────┬─────────────────┘
+            │
+   ┌────────┼────────┐
+   │        │        │
+┌───────┐ ┌───────┐ ┌───────┐
+│ Red   │ │ Green │ │ Blue  │  ← Concrete Implementations
+│ Draw  │ │ Draw  │ │ Draw  │
+└───────┘ └───────┘ └───────┘
+→ You can mix any Shape with any Color independently (e.g., RedCircle, BlueRectangle) without exploding class count.
+Compact / Notebook-style Version
+textClient ──► Abstraction.operation()
+                   ▲
+          ┌────────┼────────┐
+          │        │        │
+   RefinedAbs  RefinedAbs  Abstraction
+                   │
+                   ▼
+             Implementor.operationImpl()
+                   ▲
+          ┌────────┼────────┐
+          │        │        │
+     ConcreteImpl  ConcreteImpl  ...
+      (platform A)  (platform B)
+Key Idea in One Line (with bridge arrow)
+textAbstraction hierarchy                  Implementation hierarchy
+          │                                        │
+          └─────────────── BRIDGE ──────────────────┘
+   (Shape, Circle, Square...)      (Red, Green, Vector, Raster...)
+The Bridge prevents a combinatorial explosion (e.g., without bridge: RedCircle, GreenCircle, RedSquare, GreenSquare... → many classes).
+Let me know if you'd like:
+
+A version with more concrete names (e.g., RemoteControl + TV/Device)
+Comparison with Adapter / Decorator in ASCII
+Extra levels or arrows for emphasis

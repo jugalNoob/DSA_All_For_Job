@@ -1,3 +1,8 @@
+if(arr === []  or arr.length > 0 or typeof0arr[i]=== number  or typeof arr[i] === string){
+
+}
+
+
 let data = [0,2, 4, 5, 9, 'jugal', 'karan', 'anku'];
 
 for (let i = 0; i < data.length; i++) {

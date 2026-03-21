@@ -14,6 +14,12 @@ console.log(prefixMax([3 , 1 , 5 ]))
 console.log(prefixMax([3,1,4,2,5]))
 
 
+Index (i),arr[i],prefix[i-1],Math.max(...),prefix becomes,Meaning (up to this point)
+0,3,—,—,[3],max in [0..0] = 3
+1,1,3,"max(3, 1) → 3","[3, 3]",max in [0..1] = 3
+2,4,3,"max(3, 4) → 4","[3, 3, 4]",max in [0..2] = 4
+3,2,4,"max(4, 2) → 4","[3, 3, 4, 4]",max in [0..3] = 4
+4,5,4,"max(4, 5) → 5","[3, 3, 4, 4, 5]",max in [0..4] = 5
 Where Used
 
 Stock price analysis

@@ -1,45 +1,21 @@
+let data = [10, 20, 30, 40, 40, 40, 50, 60, 70];
+let target = 40;
 
-2️⃣ First Occurrence
+let lastOccurrence = -1;
+start = 0;
+end = data.length - 1;
 
-Find the first position of a number.
+while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
 
-Example
-
-[1,2,2,2,3,4]
-target = 2
-
-
-Answer
-
-index = 1
-
-
-Code
-
-function firstOccurrence(arr,target){
-
-let left=0
-let right=arr.length-1
-let result=-1
-
-while(left<=right){
-
-let mid=Math.floor((left+right)/2)
-
-if(arr[mid]===target){
-result=mid
-right=mid-1
-}
-else if(arr[mid] < target){
-left=mid+1
-}
-else{
-right=mid-1
+    if (data[mid] === target) {
+        lastOccurrence = mid; // store index
+        start = mid + 1;      // move right to find later occurrence
+    } else if (data[mid] < target) {
+        start = mid + 1;
+    } else {
+        end = mid - 1;
+    }
 }
 
-}
-
-return result
-}
-
-console.log(firstOccurrence([1,2,2,2,3,4],2))
+console.log("Last Occurrence Index:", lastOccurrence); // 5
