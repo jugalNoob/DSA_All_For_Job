@@ -63,7 +63,7 @@ start → starting station
 function canCompleteCircuit(gas, cost){
 
     let total = 0
-    let tank = 0
+    let tank = 0 
     let start = 0
     for(let i=0;i<gas.length;i++){
         let diff = gas[i] - cost[i]

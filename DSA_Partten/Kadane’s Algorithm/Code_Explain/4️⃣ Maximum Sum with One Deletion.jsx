@@ -38,55 +38,85 @@ or extend previous subarray that already used deletion (maxEndHereOneDel + arr[i
 Keep track of maxSoFar = Math.max(maxSoFar, maxEndHereNoDel, maxEndHereOneDel)
 
 
-JavaScript Implementation
-function maxSumOneDeletion(arr) {
-    const n = arr.length;
-    if (n === 0) return 0;
+maxonedel = max(maxnodel, maxonedel + (-2))
+           = max(1, -2)
+           = 1
 
-    let maxEndHereNoDel = arr[0];      // max sum ending here without deletion
-    let maxEndHereOneDel = arr[0];     // max sum ending here with one deletion
-    let maxSoFar = arr[0];
 
-    for (let i = 1; i < n; i++) {
-        // Update max sum ending here with one deletion
-        maxEndHereOneDel = Math.max(maxEndHereNoDel, maxEndHereOneDel + arr[i]);
 
-        // Update max sum ending here without deletion (standard Kadane)
-        maxEndHereNoDel = Math.max(arr[i], maxEndHereNoDel + arr[i]);
+           Original:   [1,  -2,  0,  3]
 
-        maxSoFar = Math.max(maxSoFar, maxEndHereNoDel, maxEndHereOneDel);
+Delete -2 → [1,   X,  0,  3]
+                      ↓
+                 continue sum
+
+
+
+function maxsumoneDelete(data){
+    let n = data.length 
+    if(n === 0) return 0
+
+    let maxnodel = data[0]
+    let maxonedel = 0
+    let maxso = data[0]
+
+    for(let i=1; i<n; i++){
+        maxonedel = Math.max(maxnodel, maxonedel + data[i])
+        maxnodel = Math.max(data[i], data[i] + maxnodel)
+        maxso = Math.max(maxso, maxnodel, maxonedel)
     }
-
-    return maxSoFar;
+    return maxso
 }
 
-// Example
-let arr = [1, -2, 0, 3];
-console.log(maxSumOneDeletion(arr)); // Output: 4
-
-Step-by-step Example [1, -2, 0, 3]
-
-| i | arr[i] | maxEndHereNoDel | maxEndHereOneDel | maxSoFar |
-| - | ------ | --------------- | ---------------- | -------- |
-| 0 | 1      | 1               | 1                | 1        |
-| 1 | -2     | -1              | 1                | 1        |
-| 2 | 0      | 0               | 1                | 1        |
-| 3 | 3      | 3               | 4                | 4 ✅      |
+console.log(maxsumoneDelete([1, -2, 0, 3]))
 
 
-Notice at i=3:
 
-maxEndHereOneDel = Math.max(maxEndHereNoDelPrev, 
-    maxEndHereOneDel + arr[i]) = Math.max(-1, 1+3) = 4
+maxnodel = 1
+maxonedel = 0
+maxso = 1
 
-Maximum sum = 4 → we effectively deleted -2.
 
-Key Insight
 
-This is essentially Kadane with 2 states.
+👉 i = 1 (value = -2)
+maxonedel = max(1, 0 + (-2)) = 1   ✅ delete -2
+maxnodel = max(-2, 1 + (-2)) = -1
+maxso = max(1, -1, 1) = 1
 
-maxEndHereNoDel → standard subarray sum
+👉 i = 2 (value = 0)
+maxonedel = max(-1, 1 + 0) = 1
+maxnodel = max(0, -1 + 0) = 0
+maxso = max(1, 0, 1) = 1
 
-maxEndHereOneDel → keeps track of max sum when we’ve used the single deletion
+👉 i = 3 (value = 3)
+maxonedel = max(0, 1 + 3) = 4
+maxnodel = max(3, 0 + 3) = 3
+maxso = max(1, 3, 4) = 4
 
-Works with negatives and positives, and deletion is optional.
+🎯 Final Answer
+4
+
+💡 Intuition (Super Easy)
+
+Think like this:
+
+maxnodel → "normal subarray"
+maxonedel → "I already deleted one bad element somewhere"
+
+👉 At -2, we delete it → that’s why result improves.
+
+Final best subarray:
+
+[1, 0, 3]  → sum = 4
+
+🧠 Interview Tip
+
+If interviewer asks:
+
+“Why 2 variables?”
+
+Answer:
+
+One tracks no deletion
+One tracks one deletion
+This avoids O(n²) brute force → gives O(n)

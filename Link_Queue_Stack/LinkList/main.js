@@ -2,6 +2,7 @@
 
 
 
+
 // class Linked{
 
 //     constructor(data){

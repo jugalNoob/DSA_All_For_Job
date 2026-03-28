@@ -1,40 +1,45 @@
-class CACHED{
-    constructor(capcity){
-        this.cache=new Map()
-        this.capcity=capcity
+   
+
+
+
+
+// class CACHED{
+//     constructor(capcity){
+//         this.cache=new Map()
+//         this.capcity=capcity
        
-    }
-    set(key){
-     if(!this.cache.has(key)) return -1
-     let value=this.cache.get(key)
-     this.cache.delete(key)
-    this.cache.set(key , value)
-    return value
-    }
+//     }
+//     set(key){
+//      if(!this.cache.has(key)) return -1
+//      let value=this.cache.get(key)
+//      this.cache.delete(key)
+//     this.cache.set(key , value)
+//     return value
+//     }
 
-    put(key,value){
-        if(this.cache.has(key)){
-            this.cache.delete(key)
-        }else if(this.cache.size === this.capcity){
-            let firest=this.cache.keys().next().value
-            this.cache.delete(firest)
-        }
-        return this.cache.set(key,value)
-    }
-}
+//     put(key,value){
+//         if(this.cache.has(key)){
+//             this.cache.delete(key)
+//         }else if(this.cache.size === this.capcity){
+//             let firest=this.cache.keys().next().value
+//             this.cache.delete(firest)
+//         }
+//         return this.cache.set(key,value)
+//     }
+// }
 
-let lru = new CACHED(2);
+// let lru = new CACHED(2);
 
-lru.put(1, 10); // {1=10}
-lru.put(2, 20); // {1=10, 2=20}
+// lru.put(1, 10); // {1=10}
+// lru.put(2, 20); // {1=10, 2=20}
 
-lru.set(1);     // access → move to end
-// {2=20, 1=10}
+// lru.set(1);     // access → move to end
+// // {2=20, 1=10}
 
-lru.put(3, 30); // remove 2
-// {1=10, 3=30}
+// lru.put(3, 30); // remove 2
+// // {1=10, 3=30}
 
-console.log(lru)
+// console.log(lru)
 
 
 

@@ -16,6 +16,15 @@ function maxSumSubarray(data, size) {
 let arr = [1, 2, 3, 4, 5];
 console.log(maxSumSubarray(arr, 3)); // Output: 12 ([3,4,5] is max sum)
 
+
+| i (start) | Window Elements | Current Sum Calculation | Current Sum | Max |
+| --------- | --------------- | ----------------------- | ----------- | --- |
+| 0         | [1, 2, 3]       | 1 + 2 + 3               | 6           | 6   |
+| 1         | [2, 3, 4]       | 2 + 3 + 4               | 9           | 9   |
+| 2         | [3, 4, 5]       | 3 + 4 + 5               | 12          | 12  |
+
+
+
 ✅ Explanation:
 
 maxEndingHere keeps track of the maximum sum ending at current index.

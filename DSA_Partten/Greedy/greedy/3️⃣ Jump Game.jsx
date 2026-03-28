@@ -9,23 +9,47 @@ Variable:
 
 maxReach → farthest index we can reach so far
 
-Code
-function canJump(nums){
 
-    let maxReach = 0
 
-    for(let i=0;i<nums.length;i++){
+function jumpgame(data){
+    let maxreach = 0 
 
-        if(i > maxReach) return false
-
-        maxReach = Math.max(maxReach , i + nums[i])
+    for(let i=0; i<data.length; i++){
+        if(i > maxreach) return false // can't reach this index
+        maxreach = Math.max(maxreach, i + data[i])
     }
 
     return true
 }
 
-Example
-nums = [2,3,1,1,4]
+console.log(jumpgame([2,3,1,1,4])) // true
+console.log(canJump([3,2,1,0,4])); // false
+
+
+function jumpgame(data){
+
+        // debugger;
+    let maxreach = 0 
+
+
+    for(let i=0; i<data.length; i++){
+        if(i > maxreach) return false // can't reach this index
+        maxreach = Math.max(maxreach, i + data[i])
+    }
+
+    return true
+}
+
+console.log(jumpgame([2,3,1,1,4])) // true
+
+
+| i | data[i] | maxreach before | Condition i>maxreach? | maxreach after | Can reach? |
+| - | ------- | --------------- | --------------------- | -------------- | ---------- |
+| 0 | 2       | 0               | 0>0? ❌ No             | max(0,0+2)=2   | yes        |
+| 1 | 3       | 2               | 1>2? ❌ No             | max(2,1+3)=4   | yes        |
+| 2 | 1       | 4               | 2>4? ❌ No             | max(4,2+1)=4   | yes        |
+| 3 | 1       | 4               | 3>4? ❌ No             | max(4,3+1)=4   | yes        |
+| 4 | 4       | 4               | 4>4? ❌ No             | max(4,4+4)=8   | yes        |
 
 
 Meaning:

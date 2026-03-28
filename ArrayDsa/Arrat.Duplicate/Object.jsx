@@ -37,3 +37,20 @@ console.log(duplicate);  // [10, 20]
 Time: O(n)
 
 Space: O(n)
+
+
+
+function findDuplicates(data) {
+    let obj = {};
+    let result = [];
+
+    for (let num of data) {
+        obj[num] = (obj[num] || 0) + 1;
+
+        if (obj[num] === 2) {
+            result.push(num);
+        }
+    }
+
+    return result;
+}
