@@ -1,21 +1,20 @@
-🧩 Your Code (unchanged)
 let n = 5;
-
 for (let i = 1; i <= n; i++) {
-  let show = '';
+    let show = '';
 
-  // spaces
-  for (let j = 1; j <= n - i; j++) {
-    show += '';
-  }
+    // spaces
+    for (let j = 1; j <= n - i; j++) {
+        show += ' ';
+    }
 
-  // stars
-  for (let b = 1; b <= i; b++) {
-    show += '*';
-  }
+    // stars
+    for (let b = 1; b <= i; b++) {
+        show += '*';
+    }
 
-  console.log(show);
+    console.log(show);
 }
+
 
 
 // ----Reversr Code  --------------Exaplin --------------->>

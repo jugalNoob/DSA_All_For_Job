@@ -1,6 +1,10 @@
 function ToOWER(data) {
+
     let result = '';
+
     for (let i = 0; i < data.length; i++) {
+
+
         let charc = data.charCodeAt(i);
 
         // Check if uppercase letter
@@ -14,6 +18,7 @@ function ToOWER(data) {
     return result;
 }
 
-let Two = 'JUGAL';
-console.log(ToOWER(Two)); // Output: "jugal"
+
+console.log(ToOWER('JUGAL'))
+
 

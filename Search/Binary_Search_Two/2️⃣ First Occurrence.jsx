@@ -1,23 +1,27 @@
-let data = [10, 20, 30, 40, 50, 50, 50, 60, 70, 80]
-let firstoccur = -1
-let find = 50
-let start = 0
-let end = data.length - 1
 
-while (start <= end) {
-    let mid = Math.floor((start + end)/2)
+let data=[10 , 20 ,30,30,30, 30 , 40 , 50 , 60]
+let find=30
+let firstoacc=-1
+let start=0
+let end=data.length-1 
+let post=undefined
 
-    if (data[mid] === find) {
-        firstoccur = mid       // store index
-        end = mid - 1          // move left to find first occurrence
-    } else if (find > data[mid]) {
-        start = mid + 1
-    } else {
-        end = mid - 1
+while(start <= end){
+
+    let mind=Math.floor((start+end)/2)
+    if(data[mind] === find){
+        post=data[mind]
+         firstoacc= mind
+       start = mind + 1   // 🔥 go LEFT
+    }else if(find > data[mind]){
+        start=mind+1
+    }else{
+        end=mind-1
     }
 }
+console.log(post)
+console.log(firstoacc)
 
-console.log(firstoccur)
 
 
 

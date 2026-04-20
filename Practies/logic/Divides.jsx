@@ -1,24 +1,32 @@
-let data=[12,9 , 5 , 2 , 3 , 7 , 5 , 6]
+//first check and then divide by 6 
 
-let max=1
-let unique
+
+let data=[12 , 3 , 7 , 6 , 2 ,  1]
+
+let count=0
 
 for(let i=0; i<data.length; i++){
 
-    if(data[i] > max){
+    if(data[i] %2 ===0 ){ // check even number 
 
-        unique=data[i]
+    count++
+        if(data[i] % 6===0){ //and then  divides
+   console.log(data[i])
 
-        if(unique % 6 === 0){
-            console.log(true)
-        }else{
-            console.log(false)
+
         }
 
-        break
+     
     }
 }
+   console.log(count , 'i am counr')
 
-console.log(unique)
-console.log(unique % 6)
 
+
+
+
+let evens = data.filter(x => x % 2 === 0);
+let divisibleBy6 = data.filter(x => x % 6 === 0);
+
+console.log(evens.length, 'even count');
+console.log(divisibleBy6);

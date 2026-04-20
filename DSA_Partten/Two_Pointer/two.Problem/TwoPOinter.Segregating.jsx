@@ -1,20 +1,90 @@
-let arr = [0, 1, 0, 1, 1, 0, 0, 1];
+function windowsize(data){
+    let start = 0
+    let end = data.length - 1 
 
-let left = 0;
-let right = arr.length - 1;
+    while(start < end){
+        while(data[start] === 0 && start < end) start++
+        while(data[end] === 1 && start < end) end--
 
-while (left < right) {
-    while (arr[left] === 0 && left < right) left++;
-    while (arr[right] === 1 && left < right) right--;
-
-    if (left < right) {
-        [arr[left], arr[right]] = [arr[right], arr[left]];
-        left++;
-        right--;
+        if(start < end){
+            [data[start], data[end]] = [data[end], data[start]]
+            start++
+            end--   // ✅ important fix
+        }
     }
+
+    return data
 }
 
-console.log(arr);
+console.log(windowsize([0, 1, 0, 1, 1, 0, 0, 1]))
+
+
+
+🧠 What this problem does
+
+👉 Move all:
+
+0 → left side  
+1 → right side
+
+🔍 Step-by-step
+Input:
+[0, 1, 0, 1, 1, 0, 0, 1]
+
+🎯 Initial
+start = 0
+end   = 7
+
+🔁 Iteration 1
+data[start] = 0 → move start++
+start = 1
+
+data[end] = 1 → move end--
+end = 6
+
+🔁 Iteration 2
+data[start] = 1 ❌ stop
+data[end] = 0 ❌ stop
+
+
+👉 Swap:
+
+[1, 0] → swap
+
+
+Array:
+
+[0, 0, 0, 1, 1, 0, 1, 1]
+
+start = 2
+end = 5
+
+🔁 Iteration 3
+data[start] = 0 → start++
+start = 3
+
+data[end] = 0 ❌ stop
+
+
+👉 Swap:
+
+[1, 0] → swap
+
+
+Array:
+
+[0, 0, 0, 0, 1, 1, 1, 1]
+
+start = 4
+end = 4
+
+🔚 Loop ends
+✅ Final Output
+[0, 0, 0, 0, 1, 1, 1, 1]
+
+🧠 Core Idea (Very Important)
+
+
 
 
 | left | right | arr               | Action     |

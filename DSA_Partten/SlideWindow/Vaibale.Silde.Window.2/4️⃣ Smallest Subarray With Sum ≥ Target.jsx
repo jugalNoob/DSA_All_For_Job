@@ -1,3 +1,10 @@
+⚡ Intuition
+Maximum ≤ target: “How long can I stretch the window before breaking the rule?”
+Minimum ≥ target: “How quickly can I reach the rule and then shrink to get the smallest window?”
+
+
+
+
 🔥 Key Difference From Previous Problem
 
 | Problem Type          | Condition    | Goal           |
@@ -29,6 +36,96 @@ function smallestSubarray(nums, target) {
 console.log(smallestSubarray([2,3,1,2,4,3], 7)); // 2
 
 
+2️⃣ Minimum Size Subarray Sum ≥ Target
+
+Problem:
+
+Find shortest subarray such that sum ≥ target.
+You shrink the window while sum ≥ target to find the minimum length.
+
+✅ Example
+data = [2,3,1,2,4,3], target=7
+
+windows:
+[2,3,1,2] sum=8 ≥ 7 → shrink → [3,1,2] sum=6 < 7
+[4,3] sum=7 ≥ 7 → shrink → min length = 2
+
+
+
+
+🔍 Step-by-step Explanation
+Input:
+data = [2,3,1,2,4,3]
+target = 7
+
+Variables:
+left = 0
+sum = 0
+min = Infinity
+
+i = 0 → data[i] = 2
+sum = 2
+sum < target → no shrink
+min = Infinity
+
+i = 1 → data[i] = 3
+sum = 2 + 3 = 5
+sum < target → no shrink
+min = Infinity
+
+i = 2 → data[i] = 1
+sum = 5 + 1 = 6
+sum < target → no shrink
+min = Infinity
+
+i = 3 → data[i] = 2
+sum = 6 + 2 = 8
+sum >= target → shrink
+
+min = min(Infinity, 3-0+1) = 4
+sum -= data[0] → sum = 8 - 2 = 6
+left = 1
+sum < target → stop
+
+i = 4 → data[i] = 4
+sum = 6 + 4 = 10
+sum >= target → shrink
+
+min = min(4, 4-1+1) = 4
+sum -= data[1] → sum = 10 - 3 = 7
+left = 2
+sum >= target → shrink again
+
+min = min(4, 4-2+1) = 3
+sum -= data[2] → sum = 7 - 1 = 6
+left = 3
+sum < target → stop
+
+i = 5 → data[i] = 3
+sum = 6 + 3 = 9
+sum >= target → shrink
+
+min = min(3, 5-3+1) = 3
+sum -= data[3] → sum = 9 - 2 = 7
+left = 4
+sum >= target → shrink
+
+min = min(3, 5-4+1) = 2  🔥
+sum -= data[4] → sum = 7 - 4 = 3
+left = 5
+sum < target → stop
+
+✅ Final Answer
+min = 2  ✅
+
+Subarray [4,3] sum = 7 → minimum length
+🧠 Key Idea (Sliding Window)
+Expand window (add data[i])
+Shrink window from left while sum >= target
+Update min each time
+⚡ Complexity
+Time: O(n)
+Space: O(1)
 Idea:
 
 Expand window until sum ≥ target

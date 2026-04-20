@@ -55,6 +55,34 @@ console.log(coinChange(36)); // Output: 3 (25 + 10 + 1)
 
 
 
+function greedy(accont){
+
+    let coins = [25, 10, 5, 1]
+    let count = 0
+
+    for(let coin of coins){
+        let use = Math.floor(accont / coin)
+        count += use
+        accont -= use * coin
+    }
+
+    return count
+}
+⚠️ Important Interview Note:
+
+Greedy works only for specific coin systems like:
+
+US coins [1,5,10,25] ✅
+Not always for arbitrary coins ❌
+
+Example:
+
+Coins [1,3,4], amount 6
+Greedy → 4 + 1 + 1 = 3 coins
+Optimal → 3 + 3 = 2 coins ❗
+
+
+
 Output:
 
 3

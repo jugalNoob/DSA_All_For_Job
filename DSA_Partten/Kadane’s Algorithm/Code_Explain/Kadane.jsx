@@ -19,6 +19,54 @@ console.log(kadane([-2, -3, 4, -1, -2, 1, 5, -3])); // 7
 
 
 
+function kandam(data) {
+    let maxdata = data[0];
+    let current = data[0];
+
+    for (let i = 1; i < data.length; i++) {
+
+        // decide: start new OR continue
+        current = Math.max(data[i], current + data[i]);
+
+        // update max
+        if (current > maxdata) {
+            maxdata = current;
+        }
+    }
+
+    return maxdata;
+}
+
+console.log(kandam([10, 20, 30])); // 60
+
+
+
+
+function maxSubarraySum(arr) {
+    if (arr.length === 0) return 0;
+
+    let maxCurrent = arr[0];   // max sum ending at current position
+    let maxGlobal = arr[0];    // overall maximum sum found
+
+    for (let i = 1; i < arr.length; i++) {
+        // At each step: either extend previous subarray or start new from current element
+        maxCurrent = Math.max(arr[i], maxCurrent + arr[i]);
+        
+        // Update global max if current is better
+        if (maxCurrent > maxGlobal) {
+            maxGlobal = maxCurrent;
+        }
+    }
+
+    return maxGlobal;
+}
+
+// Test
+let nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+console.log(maxSubarraySum(nums)); // Output: 6
+
+
+
 🧠 Core Idea
 
 At every index, you decide:

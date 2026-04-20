@@ -10,6 +10,7 @@ arr = [1,1,1], k=2 → 2 subarrays: [1,1] at positions [0,1] and [1,2]
 Solution using prefix sum + HashMap:
 
 function subarraySumK(arr, k) {
+    
     const map = {0:1};
     let sum = 0, count = 0;
     for (let num of arr) {

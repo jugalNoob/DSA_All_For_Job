@@ -21,6 +21,96 @@ function longestSubarray(nums, k) {
 console.log(longestSubarray([1,2,3,4,5], 9)); // 3
 
 
+1️⃣ Maximum Size Subarray Sum ≤ Target
+
+Problem:
+
+Find longest subarray such that sum ≤ target.
+You can shrink window only if sum > target.
+
+Logic:
+
+
+✅ Example
+data = [1,2,3,4,5], target = 9
+
+windows:
+[1,2,3] sum=6 → ok
+[2,3,4] sum=9 → ok
+[3,4,5] sum=12 → shrink → [4,5] sum=9
+
+max length = 3
+
+
+
+
+
+Ah! Perfect — this is the variable-size sliding window problem. Let me explain carefully step by step 👇.
+
+You wrote:
+
+console.log(uppersize([1,2,3,4,5],  9)); // 3
+
+🧠 Problem
+You want the maximum length of contiguous subarray whose sum ≤ target.
+Array: [1,2,3,4,5], target = 9
+🔍 Step-by-step
+Variables:
+left = 0
+sum = 0
+max = 0
+
+Iteration 0 → i = 0, data[i] = 1
+sum += 1 → sum = 1
+sum <= target → nothing to shrink
+max = max(0, 0-0+1) = 1
+
+Iteration 1 → i = 1, data[i] = 2
+sum += 2 → sum = 3
+sum <= target → nothing to shrink
+max = max(1, 1-0+1) = 2
+
+Iteration 2 → i = 2, data[i] = 3
+sum += 3 → sum = 6
+sum <= target → nothing to shrink
+max = max(2, 2-0+1) = 3
+
+Iteration 3 → i = 3, data[i] = 4
+sum += 4 → sum = 10
+sum > target → shrink from left
+
+sum -= data[0] → sum = 9
+left++ → left = 1
+
+sum <= target → stop shrinking
+max = max(3, 3-1+1) = 3
+
+Iteration 4 → i = 4, data[i] = 5
+sum += 5 → sum = 14
+sum > target → shrink
+
+sum -= data[1] → sum = 12, left = 2
+sum > target → shrink again
+sum -= data[2] → sum = 9, left = 3
+
+sum <= target → stop shrinking
+max = max(3, 4-3+1) = 3
+
+✅ Final Answer:
+max = 3
+
+🔥 Visual Flow (Sliding Window)
+Array:    [1, 2, 3, 4, 5]
+Target:   9
+Window:   [1] → [1,2] → [1,2,3] → [2,3,4] → [3,4,5]
+MaxLen:   1 → 2 → 3 → 3 → 3
+
+🧠 How it works
+Expand window by adding data[i].
+Shrink window from left until sum ≤ target.
+Update max length.
+
+
 Ahh I see 👍 — you want your variable sliding window 
 code explained in the same “detailed 
 iteration story style” like fixed window.

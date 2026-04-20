@@ -1,3 +1,16 @@
+🔥 If interviewer asks: “Remove FIRST middle”
+
+Change loop slightly:
+
+while (fast.next && fast.next.next) {
+  prev = slow;
+  slow = slow.next;
+  fast = fast.next.next;
+}
+
+
+
+
 
  removeMiddlle(){
 

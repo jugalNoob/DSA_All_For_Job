@@ -1,63 +1,40 @@
-🔥 PATTERN 2: HASH MAP (Unsorted Pair)
-🧠 Intuition:
+🧩 Patterns You Must Recognize
+🔑 Pattern 1: Frequency Count
+duplicates
+anagrams
+top K
+🔑 Pattern 2: Prefix Sum + HashMap
+subarray sum
+count problems
+🔑 Pattern 3: Sliding Window + HashMap
+substring problems
+window problems
+🔑 Pattern 4: Set / HashMap Combo
+consecutive sequence
+unique elements
+🎯 Interview Strategy
 
-“I want to remember what I saw before”
+When you see:
 
-Example:
-[3, 2, 4], target = 6
+“find pair” → think HashMap (Two Sum)
+“count subarray” → think prefix sum
+“substring without repeat” → think sliding window + map
+“frequency” → think map
+🔥 Rapid Fire (Interview Style)
 
+👉 Answer these to test yourself:
 
-Process:
+Why is HashMap O(1)?
+Object vs Map in JS difference?
+What is hash collision?
+When to use Set vs Map?
+Can keys be objects in JS?
 
-3 → need 3 → store 3
-2 → need 4 → store 2
-4 → need 2 → FOUND in map ✅
+If you want next level 🚀
+I can give you:
 
-💡 Brain Rule:
+Amazon/Google real questions
+Tricky edge cases interviewer asks
+System design relation (Redis hash, caching)
 
-👉 “For every number, check if its partner already exists”
-
-
-
-🔥 2. HASH MAP (Unsorted Pair / Frequency)
-🟢 Easy
-
-Two Sum
-
-First Unique Character
-
-Valid Anagram
-
-👉 Focus:
-
-Store & lookup quickly
-
-Frequency counting
-
-🟡 Medium
-
-Subarray Sum Equals K
-
-Longest Consecutive Sequence
-
-Group Anagrams
-
-👉 Focus:
-
-Map + logic combo
-
-Pattern recognition
-
-🔴 FAANG Level
-
-LRU Cache
-
-Minimum Window Substring
-
-Top K Frequent Elements
-
-👉 Focus:
-
-Map + Heap / Design
-
-Optimization thinking
+Just say: “next level hashmap” 😄

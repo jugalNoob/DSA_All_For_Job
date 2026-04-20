@@ -80,3 +80,99 @@ order.next() // Payment started + Stripe payment
 order.next() // Order shipped
 order.next() // Order confirmed
 
+::::::::::::::: second row class ------------------->>
+
+// ── Payment APIs ──
+class StripeAPI {
+  makePayment(amount) {
+    console.log('Stripe way:', amount)
+  }
+}
+
+class GoogleAPI {
+  makePayment(amount) {
+    console.log('Google way:', amount)
+  }
+}
+
+// ── Adapter Pattern ──
+class StripeAdapter {
+  constructor(stripe) {
+    this.stripe = stripe
+  }
+
+  process(amount) {
+    this.stripe.makePayment(amount)
+  }
+}
+
+class GoogleAdapter {
+  constructor(google) {
+    this.google = google
+  }
+
+  process(amount) {
+    this.google.makePayment(amount)
+  }
+}
+
+// ── Service Layer ──
+class PaymentService {
+  constructor(adapter) {
+    this.adapter = adapter
+  }
+
+  pay(amount) {
+    this.adapter.process(amount)
+  }
+}
+
+// ── State Pattern ──
+class PaymentState {
+  pay(order) {
+    console.log('Payment started')
+    order.paymentService.pay(order.amount)
+    order.setState(new ShippedState())
+  }
+}
+
+class ShippedState {
+  pay(order) {
+    console.log('Order shipped')
+    order.setState(new ConfirmedState())
+  }
+}
+
+class ConfirmedState {
+  pay(order) {
+    console.log('Order confirmed')
+  }
+}
+
+// ── Order ──
+class Order {
+  constructor(amount, paymentService) {
+    this.amount = amount
+    this.paymentService = paymentService
+    this.state = new PaymentState() // initial state
+  }
+
+  setState(state) {
+    this.state = state
+  }
+
+  next() {
+    this.state.pay(this)
+  }
+}
+
+// ── Usage ──
+let stripe = new StripeAPI()
+let stripeAdapter = new StripeAdapter(stripe)
+let payService = new PaymentService(stripeAdapter)
+
+let order = new Order(5000, payService)
+
+order.next() // Payment started → Stripe way: 5000
+order.next() // Order shipped
+order.next() // Order confirmed

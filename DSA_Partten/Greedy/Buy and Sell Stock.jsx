@@ -1,3 +1,179 @@
+
+function maxProfitMultiple(prices){
+    let profit = 0
+
+    for(let i=1; i<prices.length; i++){
+        if(prices[i] > prices[i-1]){
+            profit += prices[i] - prices[i-1]
+        }
+    }
+
+    return profit
+}
+
+console.log(maxProfitMultiple([7,1,5,3,6,4])) // 7
+
+
+🔍 Step-by-step Loop
+✅ Input:
+[7, 1, 5, 3, 6, 4]
+
+🔁 Iteration Breakdown
+👉 Start:
+price = 0
+
+🔹 i = 1 (value = 1)
+prev = 7
+curr = 1
+
+1 > 7 ❌
+skip
+
+
+👉 price = 0
+
+🔹 i = 2 (value = 5)
+prev = 1
+curr = 5
+
+5 > 1 ✅
+price += (5 - 1) = 4
+
+
+👉 price = 4
+
+🔹 i = 3 (value = 3)
+prev = 5
+curr = 3
+
+3 > 5 ❌
+skip
+
+
+👉 price = 4
+
+🔹 i = 4 (value = 6)
+prev = 3
+curr = 6
+
+6 > 3 ✅
+price += (6 - 3) = 3
+
+
+👉 price = 7
+
+🔹 i = 5 (value = 4)
+prev = 6
+curr = 4
+
+4 > 6 ❌
+skip
+
+
+👉 price = 7
+
+✅ Final Answer:
+7
+
+🔥 Visual Flow (Same style)
+data:   [7, 1, 5, 3, 6, 4]
+diff:     -6  +4  -2  +3  -2
+price:  0 → 0 → 4 → 4 → 7 → 7
+
+🧠 Intuition (Super Simple)
+
+👉
+
+1 → 5  = +4
+3 → 6  = +3
+
+
+Total = 7
+
+⚡ One-line Rule
+
+👉
+"If today price > yesterday → take profit"
+
+
+
+🔍 Step-by-step (Your style)
+✅ Input:
+[16, 17, 4, 3, 5, 2]
+
+🔁 Iteration Breakdown
+👉 Start:
+profit = 0
+
+🔹 i = 1 (value = 17)
+prev = 16
+curr = 17
+
+17 > 16 ✅
+profit += (17 - 16) = 1
+
+
+👉 profit = 1
+
+🔹 i = 2 (value = 4)
+prev = 17
+curr = 4
+
+4 > 17 ❌
+skip
+
+
+👉 profit = 1
+
+🔹 i = 3 (value = 3)
+prev = 4
+curr = 3
+
+3 > 4 ❌
+skip
+
+
+👉 profit = 1
+
+🔹 i = 4 (value = 5)
+prev = 3
+curr = 5
+
+5 > 3 ✅
+profit += (5 - 3) = 2
+
+
+👉 profit = 3
+
+🔹 i = 5 (value = 2)
+prev = 5
+curr = 2
+
+2 > 5 ❌
+skip
+
+
+👉 profit = 3
+
+✅ Final Answer:
+3
+
+console.log(maxProfitMultiple([7,1,5,3,6,4])) // 7
+🔥 Visual Flow (Same style as you like)
+data:   [16, 17, 4, 3, 5, 2]
+diff:     +1   -13  -1   +2  -3
+profit:  0 → 1 → 1 → 1 → 3 → 3
+
+🧠 Key Difference (VERY IMPORTANT)
+
+| Single Transaction | Multiple Transaction   |
+| ------------------ | ---------------------- |
+| Track `minprice`   | Compare `prev vs curr` |
+| One buy/sell       | Many buy/sell          |
+| Global max         | Local profits          |
+
+
+
 ✅ Maximum profit = 5
 
 4️⃣ Code (JavaScript)

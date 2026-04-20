@@ -1,0 +1,32 @@
+🚀 3. PRO LEVEL (Real Backend Usage)
+
+Now we connect with your Node.js + System Design knowledge
+
+✅ Example 1: Payment System (Real Interview Favorite)
+class Stripe {
+  pay() { console.log("Stripe Payment 💳"); }
+}
+
+class PayPal {
+  pay() { console.log("PayPal Payment 💰"); }
+}
+
+class PaymentFactory {
+  static methods = {
+    stripe: Stripe,
+    paypal: PayPal
+  };
+
+  static create(method) {
+    const Service = this.methods[method];
+    if (!Service) throw new Error("Invalid payment method");
+    return new Service();
+  }
+}
+
+// Usage
+const payment = PaymentFactory.create("stripe");
+payment.pay();
+
+
+👉 Add Razorpay later → no code change 🔥

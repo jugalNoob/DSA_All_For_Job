@@ -23,6 +23,8 @@ Let’s make it crystal clear 👇
 Factory = creation logic
 DI = object supply / wiring
 🚫 Problem (Without Factory + DI)
+
+
 class UserService {
   constructor() {
     this.db = new MongoDB(); // ❌ tightly coupled
@@ -53,6 +55,10 @@ class DBFactory {
 👉 Now object creation is flexible
 
 ✅ Step 2: Use DI (inject dependency)
+
+
+
+
 class UserService {
   constructor(db) {
     this.db = db;

@@ -1,21 +1,75 @@
-function prefixMin(arr){
-    let prefix = [0]
+function perfixdata(data){
 
-    prefix[0] = arr[0]
+    let perif=[]
+    perif[0]=data[0]
 
-    console.log(prefix)
+    for(let i=1; i<data.length; i++){
 
-    for(let i = 1; i < arr.length; i++){
-        prefix[i] = Math.min(prefix[i-1], arr[i])
 
-        // first step  2 = 1 , 2
-        //second step 1 = 4-1 , 4
+        perif[i]=Math.max(perif[i-1] , data[i])
     }
 
-    return prefix
+    return perif
 }
 
-console.log(prefixMin([2,4,6,8]))
+console.log(perfixdata([3,1,4,2,5]))
+
+🔑 Key Idea
+perif[i] = Math.min(perif[i-1], data[i])
+
+perif[i-1] → the minimum value seen so far
+data[i] → the current value
+perif[i] → stores the new minimum
+🔁 Step-by-step Example
+
+Input:
+
+data = [3, 1, 4, 2, 5]
+
+i = 0
+perif[0] = data[0] = 3
+
+i = 1
+perif[1] = min(perif[0], data[1])
+          = min(3, 1)
+          = 1  // new minimum
+
+i = 2
+perif[2] = min(perif[1], data[2])
+          = min(1, 4)
+          = 1  // still 1, because 4 > 1
+
+i = 3
+perif[3] = min(perif[2], data[3])
+          = min(1, 2)
+          = 1  // still 1, because 2 > 1
+
+i = 4
+perif[4] = min(perif[3], data[4])
+          = min(1, 5)
+          = 1  // still 1, because 5 > 1
+
+🧠 Why 1 Repeats
+1 became the minimum at i = 1
+Every next data[i] is larger than 1
+Math.min(1, bigger number) → still 1
+
+✅ So 1 repeats until a smaller number than 1 appears.
+
+Visual Analogy
+
+Think like tracking cheapest price:
+
+Prices:   3   1   4   2   5
+Cheapest: 3   1   1   1   1
+
+Once you see the cheapest (1), it stays cheapest
+Only a smaller price would update it.
+// Index 0 → 3
+// Index 1 → min(3,1) = 1
+// Index 2 → min(1,4) = 1
+// Index 3 → min(1,2) = 1
+// Index 4 → min(1,5) = 1
 
 
 

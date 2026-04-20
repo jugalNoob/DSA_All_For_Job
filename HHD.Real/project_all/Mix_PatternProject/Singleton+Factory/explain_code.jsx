@@ -1,49 +1,63 @@
-🧠 Let’s Answer Your Question First
-❓ Can we use Singleton + Factory together?
+//search Indix simple Factory + Strategy   +Di 
 
-👉 ✅ YES, absolutely
 
-🔥 Simple Explanation
-Factory → decides what object to create
-Singleton → ensures only one instance exists
-
-👉 So:
-
-Factory can create objects, and one of them can be a Singleton
-
-💻 Example (Simple)
-class DB {
-  constructor() {
-    if (DB.instance) return DB.instance;
-    DB.instance = this;
-  }
-
-  connect() {
-    console.log("DB connected");
-  }
+class singlIndex{
+    search(){
+console.log('single index search ')
+    }
 }
 
-class DBFactory {
-  static getDB() {
-    return new DB(); // always same instance
-  }
+class compoundIndex{
+    search(){
+        console.log('multi  search index ')
+    }
 }
 
-const db1 = DBFactory.getDB();
-const db2 = DBFactory.getDB();
 
-console.log(db1 === db2); // true
+// factory 
 
-🎯 Interview Line (Perfect Answer)
 
-“Yes, Factory can be used to create objects, and Singleton ensures only one instance is returned.”
+class factory{
 
-⚠️ But Now Back to MOCK INTERVIEW 🔥
+    static nofication(type){
+        if(type === 'single'){
+            return new singlIndex()
+        }
 
-👉 Don’t skip questions 😄
+        if(type === 'multi'){
+            return new compoundIndex()
+        }
+    }
+}
 
-❓ Question 1 (AGAIN)
 
-👉 What is the difference between:
 
-Encapsulation vs Abstraction
+class srarchingstartest{
+    constructor(stargest){
+        this.stargest=stargest
+    
+}
+
+
+stargestsearch(){
+    this.stargest.search()
+}
+}
+
+
+let test=factory.nofication('multi')
+
+let test2=new srarchingstartest(test)
+
+test2.stargestsearch()
+
+
+
+class SmartFactory {
+    static create(query) {
+        if (query.includes('AND')) {
+            return new CompoundIndex();
+        }
+        return new SingleIndex();
+    }
+}

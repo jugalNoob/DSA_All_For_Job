@@ -1,3 +1,31 @@
+function fizedsize(data , size){
+
+    let sum=0
+    let max=0
+
+    for(let i=0; i<size; i++){
+        max+=data[i]
+    }
+
+    sum=max
+
+
+    for(let i=size; i<data.length; i++){
+        sum+=data[i]
+        sum-=data[i-size]
+        max=Math.max(sum,max)
+    }
+
+
+    return max
+    
+}
+const arr = [4, 2, 1, 7, 8, 1, 2,];
+const windowSize = 3;
+
+
+
+
 
 function FixSlide(data , windowsize){
 

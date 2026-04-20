@@ -15,7 +15,7 @@ function wrap(fn ,base=1000, rety=10,max=10000){
             } catch (error) {
                 console.error(error)
                 let mainji=jitter(base , i ,max)
-                    console.log("Waiting:", mainji)
+               
                 await new Promise(res=>setTimeout(res ,mainji))
             }
         }

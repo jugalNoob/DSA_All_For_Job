@@ -1,24 +1,87 @@
-Optimized Binary Search (Leetcode-style) – your peakElement function:
-function peakElement(arr){
-    let left = 0
-    let right = arr.length - 1
+function pickelemnt(data) {
 
-    while(left < right){
-        let mid = Math.floor((left + right)/2)
+    let start = 0
+    let end = data.length - 1
 
-        if(arr[mid] < arr[mid+1]){
-            left = mid + 1
-        }else{
-            right = mid
+    while (start < end) {
+
+        let mid = Math.floor((start + end) / 2)
+
+        if (data[mid] < data[mid + 1]) {
+            start = mid + 1
+        } else {
+            end = mid
         }
     }
 
-    return arr[left]
+    return data[start]
 }
 
-console.log(peakElement([1,3,20,4,1,0])) // 20
+console.log(pickelemnt([1, 3, 20, 4, 1, 0]))
 
 
+
+✅ Output
+20
+
+🧠 How this works (VERY IMPORTANT)
+
+👉 You are not finding max directly
+👉 You are finding a peak element
+
+🔍 Dry Run
+Array:
+[1, 3, 20, 4, 1, 0]
+
+Step 1
+start = 0, end = 5
+mid = 2 → value = 20
+
+
+Check:
+
+data[2] < data[3] → 20 < 4 ❌
+
+
+👉 Move left:
+
+end = mid = 2
+
+Step 2
+start = 0, end = 2
+mid = 1 → value = 3
+
+
+Check:
+
+3 < 20 ✅
+
+
+👉 Move right:
+
+start = mid + 1 = 2
+
+Step 3
+start = 2, end = 2 → STOP
+
+
+👉 Return:
+
+data[2] = 20
+
+🔥 Intuition (Golden)
+
+👉 If right neighbor is bigger → peak is on right
+👉 If left side bigger → peak is on left
+
+⚡ Time Complexity
+O(log n) ✅ (binary search)
+
+🧠 Interview Explanation
+
+👉 Say this:
+
+“I use binary search. If mid is smaller than next element, peak lies on right; otherwise on left. This reduces search space to O(log n).”
 
 
 🔹 Key Idea

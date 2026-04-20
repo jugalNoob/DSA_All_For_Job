@@ -1,3 +1,20 @@
+function randomTTL(baseTTL, minJitter = 0.1, maxJitter = 0.2) {
+
+    // Step 1: random jitter percentage
+    let jitterPercent = minJitter + Math.random() * (maxJitter - minJitter);
+
+    // Step 2: calculate jitter value
+    let jitter = baseTTL * jitterPercent;
+
+    // Step 3: randomize between (baseTTL - jitter) and (baseTTL + jitter)
+    let result = Math.floor(baseTTL - jitter + Math.random() * (2 * jitter));
+
+    return result;
+}
+
+
+
+
 Exactly! 🔥 What you have here is a simulation of a Redis TTL cache with jitter, which is exactly the kind of strategy used in distributed caching systems to prevent cache stampedes. Let me break it down carefully.
 
 🧩 Code Explanation

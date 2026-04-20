@@ -24,3 +24,11 @@ You must connect OOP → Design.
 5. Dependency Inversion
 
 👉 Depend on abstraction
+
+
+Principle,Core Idea,Key Benefit
+S,One class = One responsibility,Easier to maintain
+O,"Open for extension, closed for mod",Flexible without breaking code
+L,Subclass must be substitutable,Safe inheritance
+I,No fat interfaces,"Clean, focused contracts"
+D,Depend on abstractions,Loose coupling + Testable
