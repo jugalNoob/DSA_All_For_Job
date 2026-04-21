@@ -1,99 +1,103 @@
 
-  deleteNodeNth(n){
+  removeNth(n){
 
-  let dummy={next:this.head};   //it just a object store next key and this.head value 
-  let fast=dummy;
-  let slow=dummy;
+  let dummy = { next: this.head }
 
-  console.log(fast)
+  // debugger;
+  let slow = dummy
+  let fast = dummy
 
+  // move fast n+1 steps
+  for(let i = 0; i < n + 1; i++){
+    fast = fast.next
 
-    // Step 1: move fast n+1 steps
-  for(let i=0; i<=n; i++){
-    fast=fast.next
+    /// 0  < 1  == fast 10  
+
+    
+    /// 1  <= 1  == fast 20 
+    
+    //fast become a 20
   }
 
-  // step 2 move both 
+  // move both
+  while(fast){ // start 20 
 
-  while(fast){
-    fast=fast.next
-    slow=slow.next
+    //--first 20
+    // slow 10
+// fast 30 
+
+//second --> fast 30 
+//slow ==20
+//fast ==40
+
+//thired -> 40 
+
+//slow ==30 
+
+//fast null 
+
+    slow = slow.next
+    fast = fast.next
   }
 
-  // Step 3: delete node
-  slow.next = slow.next.next;
+  // slow is 30 
 
-   this.head = dummy.next;
+  //slow.net.next =40 
+  // delete node
+  slow.next = slow.next.next
 
-   this.size++
-     return this;
+  this.head = dummy.next
 
-  }
+  return this
 }
 
 
 
 
-🔍 Step-by-Step Dry Run
-Initial:
-dummy → 10 → 20 → 30 → 40
-  ↑
-fast, slow
 
-✅ Step 1: Move fast (n+1 steps)
+✅ Correct Dry Run (VERY IMPORTANT)
+List:
+dummy → 10 → 20 → 30 → 40 → null
 
-n = 2 → move 3 steps
-
-Step 1: fast → 10
-Step 2: fast → 20
-Step 3: fast → 30
+Step 1: move fast n + 1 = 2 steps
+i = 0 → fast = 10
+i = 1 → fast = 20
 
 
-Now:
+Now state:
 
-dummy → 10 → 20 → 30 → 40
-  ↑
- slow        fast
+slow = dummy
+fast = 20
 
-✅ Step 2: Move BOTH together
-Move 1:
-slow → 10
-fast → 40
+Step 2: move both until fast hits null
+Iteration 1:
+slow = 10
+fast = 30
 
-Move 2:
-slow → 20
-fast → null
-
-🛑 Stop (fast reached end)
-
-Now:
-
+Iteration 2:
 slow = 20
-slow.next = 30  👈 node to delete
+fast = 40
 
-✅ Step 3: Delete
+Iteration 3:
+slow = 30
+fast = null
+
+🎯 Now deletion point
+slow = 30
+slow.next = 40
+
+
+So:
+
 slow.next = slow.next.next
 
-20 → 40
 
-✅ Final List
-10 → 20 → 40
+becomes:
 
-🎯 Key Idea (remember this line)
-
-👉 “Gap of n between fast and slow helps find target”
-
-⚠️ Important Case (very easy)
-If:
-n = 1
+30 → null
 
 
-👉 Delete last node:
-
-10 → 20 → 30 → 40
-→ 10 → 20 → 30
-
-
+✔️ Node 40 removed
 
 ::::::::::::::::: With One :::::::::::::::::::::::::::::::
 

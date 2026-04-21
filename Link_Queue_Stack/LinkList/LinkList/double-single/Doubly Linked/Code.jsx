@@ -1,101 +1,58 @@
-class DoublyLinkedList {
-  constructor(data) {
-    this.head = {
-      prev: null,
-      value: data,
-      next: null
-    };
-
-    this.tail = this.head;
-    this.size = 1;
+class LINKED{
+  constructor(){
+    this.head = null
+    this.tail = null
+    this.size = 0
   }
 
-  // ➕ Insert at end
-  appendNode(data) {
-    const newNode = {
+  tailhead(data){
+    let newnode = {
       prev: this.tail,
       value: data,
       next: null
-    };
-
-    this.tail.next = newNode;
-    this.tail = newNode;
-    this.size++;
-  }
-
-  // ➖ Delete by position (1-based index)
-  deleteNode(position) {
-    if (position < 1 || position > this.size) {
-      console.log("Invalid position");
-      return;
     }
 
-    // delete head
-    if (position === 1) {
-      this.head = this.head.next;
-
-      if (this.head) {
-        this.head.prev = null;
-      } else {
-        this.tail = null;
-      }
-
-      this.size--;
-      return;
-    }
-
-    let current = this.head;
-    let count = 1;
-
-    while (count < position) {
-      current = current.next;
-      count++;
-    }
-
-    // update links
-    current.prev.next = current.next;
-
-    if (current.next) {
-      current.next.prev = current.prev;
+    if(!this.head){
+      this.head = newnode
+      this.tail = newnode
     } else {
-      // deleting tail
-      this.tail = current.prev;
+      this.tail.next = newnode
+      this.tail = newnode
     }
 
-    this.size--;
+    this.size++
   }
 
-  // 🔍 Search value
-  searchNode(value) {
-    let current = this.head;
+  traverfarword(){
+    let curret = this.head
 
-    while (current) {
-      if (current.value === value) return true;
-      current = current.next;
-    }
-
-    return false;
-  }
-
-  // ➡️ Traverse forward
-  traverseForward() {
-    let current = this.head;
-    while (current) {
-      console.log(current.value);
-      current = current.next;
+    while(curret){
+      console.log(curret.value)
+      curret = curret.next
     }
   }
 
-  // ⬅️ Traverse backward
-  traverseBackward() {
-    let current = this.tail;
-    while (current) {
-      console.log(current.value);
-      current = current.prev;
+  traverbackward(){
+    let curret = this.tail
+
+    while(curret){
+      console.log(curret.value)
+      curret = curret.prev
     }
   }
 }
 
+
+
+
+let link=new LINKED()
+link.tailhead(10)
+link.tailhead(20)
+link.tailhead(30)
+link.tailhead(40)
+link.traverfarword()
+link.traverbackward()
+console.log(link)
 
 
 🧪 3️⃣ Test the Doubly Linked List
